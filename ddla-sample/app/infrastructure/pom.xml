@@ -16,6 +16,6 @@
     <modules>
         <module>infra-dal</module>
         <module>infra-integration</module>
-        <module>infra-adapter</module>
+        <module>infra-acl</module>
     </modules>
 </project>
