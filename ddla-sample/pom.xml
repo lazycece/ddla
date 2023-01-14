@@ -17,8 +17,8 @@
     <modules>
         <module>test</module>
         <module>bootstrap</module>
-        <module>app/api</module>
-        <module>app/client</module>
+        <module>app/adapter</module>
+        <module>app/facade</module>
         <module>app/application</module>
         <module>app/domain</module>
         <module>app/infrastructure</module>

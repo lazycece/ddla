@@ -8,8 +8,8 @@
         <version>${revision}</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
-    <artifactId>ddla-sample-api</artifactId>
-    <name>DDLA Sample API</name>
+    <artifactId>ddla-sample-adapter</artifactId>
+    <name>DDLA Sample Adapter</name>
     <description>${project.name}</description>
 
 </project>
