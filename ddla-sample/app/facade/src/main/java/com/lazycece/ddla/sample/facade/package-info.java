@@ -18,4 +18,4 @@
  * @author lazycece
  * @date 2023/1/14
  */
-package com.lazycece.ddla.sample.client;
+package com.lazycece.ddla.sample.facade;
