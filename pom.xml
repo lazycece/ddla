@@ -47,6 +47,7 @@
 
     <modules>
         <module>ddla-archetype</module>
+        <module>ddla-sample</module>
     </modules>
 
     <properties>
