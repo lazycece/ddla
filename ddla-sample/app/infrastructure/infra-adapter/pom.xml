@@ -4,18 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lazycece.ddla</groupId>
-        <artifactId>ddla-sample</artifactId>
+        <artifactId>ddla-sample-infrastructure</artifactId>
         <version>${revision}</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-    <packaging>pom</packaging>
-    <artifactId>ddla-sample-infrastructure</artifactId>
-    <name>DDLA Sample Infrastructure</name>
+    <artifactId>infra-adapter</artifactId>
+    <name>DDLA Sample Infrastructure Adapter</name>
     <description>${project.name}</description>
 
-    <modules>
-        <module>infra-dal</module>
-        <module>infra-integration</module>
-        <module>infra-adapter</module>
-    </modules>
 </project>
