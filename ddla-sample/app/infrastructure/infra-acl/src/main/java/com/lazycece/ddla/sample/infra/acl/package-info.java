@@ -18,4 +18,7 @@
  * @author lazycece
  * @date 2023/1/14
  */
+@InfrastructureLayer
 package com.lazycece.ddla.sample.infra.acl;
+
+import com.lazycece.rapidf.domain.anotation.InfrastructureLayer;
