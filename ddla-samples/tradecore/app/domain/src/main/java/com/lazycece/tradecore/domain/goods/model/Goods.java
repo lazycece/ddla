@@ -18,6 +18,8 @@ package com.lazycece.tradecore.domain.goods.model;
 
 import com.lazycece.rapidf.domain.anotation.DomainEntity;
 import com.lazycece.rapidf.domain.model.Entity;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -25,6 +27,8 @@ import java.math.BigDecimal;
  * @author lazycece
  * @date 2023/2/11
  */
+@Getter
+@Setter
 @DomainEntity
 public class Goods extends Entity<String> {
 
