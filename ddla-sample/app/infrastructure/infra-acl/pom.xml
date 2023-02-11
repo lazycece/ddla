@@ -5,11 +5,28 @@
     <parent>
         <groupId>com.lazycece.ddla</groupId>
         <artifactId>ddla-sample-infrastructure</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>infra-acl</artifactId>
     <name>DDLA Sample Infrastructure ACL</name>
     <description>${project.name}</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.lazycece.ddla</groupId>
+            <artifactId>ddla-sample-infra-dal</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lazycece.ddla</groupId>
+            <artifactId>ddla-sample-infra-integration</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lazycece.ddla</groupId>
+            <artifactId>ddla-sample-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

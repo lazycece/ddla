@@ -5,11 +5,22 @@
     <parent>
         <groupId>com.lazycece.ddla</groupId>
         <artifactId>ddla-sample</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>ddla-sample-facade</artifactId>
+    <version>${ddla-sample-facade.version}</version>
     <name>DDLA Sample Facade</name>
     <description>${project.name}</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.lazycece.rapidf</groupId>
+            <artifactId>rapidf-restful</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lazycece.rapidf</groupId>
+            <artifactId>rapidf-validation</artifactId>
+        </dependency>
+    </dependencies>
 </project>
