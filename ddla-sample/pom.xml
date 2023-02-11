@@ -21,8 +21,19 @@
     </modules>
 
     <properties>
-        <ddla-sample-facade.version>1.0.0.20230210</ddla-sample-facade.version>
+        <project-facade.version>1.0.0.20230210</project-facade.version>
         <rapidf-dependencies.version>1.1.1-SNAPSHOT</rapidf-dependencies.version>
+        <!-- java -->
+
+        <!-- maven -->
+
+        <!-- 基础依赖 -->
+
+        <!-- 二方依赖 -->
+
+        <!-- 三方依赖 -->
+        <lombok.version>1.18.24</lombok.version>
+
     </properties>
 
     <dependencyManagement>
@@ -40,6 +51,12 @@
                 <version>${rapidf-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -25,5 +25,9 @@
             <groupId>com.lazycece.rapidf</groupId>
             <artifactId>rapidf-logger</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 </project>

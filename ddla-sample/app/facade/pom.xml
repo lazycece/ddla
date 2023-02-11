@@ -9,7 +9,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>ddla-sample-facade</artifactId>
-    <version>${ddla-sample-facade.version}</version>
+    <version>${project-facade.version}</version>
     <name>${project.artifactId}</name>
     <description>${project.name}</description>
 

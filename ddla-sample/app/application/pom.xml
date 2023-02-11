@@ -18,5 +18,10 @@
             <artifactId>ddla-sample-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.lazycece.ddla</groupId>
+            <artifactId>ddla-sample-facade</artifactId>
+            <version>${project-facade.version}</version>
+        </dependency>
     </dependencies>
 </project>
