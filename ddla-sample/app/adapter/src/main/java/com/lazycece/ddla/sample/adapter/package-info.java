@@ -18,4 +18,7 @@
  * @author lazycece
  * @date 2023/1/14
  */
+@AdapterLayer
 package com.lazycece.ddla.sample.adapter;
+
+import com.lazycece.rapidf.domain.anotation.AdapterLayer;

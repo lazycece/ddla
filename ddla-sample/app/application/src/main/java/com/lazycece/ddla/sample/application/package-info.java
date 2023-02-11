@@ -18,4 +18,7 @@
  * @author lazycece
  * @date 2023/1/14
  */
+@ApplicationLayer
 package com.lazycece.ddla.sample.application;
+
+import com.lazycece.rapidf.domain.anotation.ApplicationLayer;
