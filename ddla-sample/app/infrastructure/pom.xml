@@ -10,7 +10,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>ddla-sample-infrastructure</artifactId>
-    <name>DDLA Sample Infrastructure</name>
+    <name>${project.artifactId}</name>
     <description>${project.name}</description>
 
     <modules>

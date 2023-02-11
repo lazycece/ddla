@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>ddla-sample-test</artifactId>
-    <name>DDLA Sample Test</name>
+    <name>${project.artifactId}</name>
     <description>${project.name}</description>
 
     <dependencies>

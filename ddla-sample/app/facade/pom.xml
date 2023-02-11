@@ -10,7 +10,7 @@
     </parent>
     <artifactId>ddla-sample-facade</artifactId>
     <version>${ddla-sample-facade.version}</version>
-    <name>DDLA Sample Facade</name>
+    <name>${project.artifactId}</name>
     <description>${project.name}</description>
 
     <dependencies>
