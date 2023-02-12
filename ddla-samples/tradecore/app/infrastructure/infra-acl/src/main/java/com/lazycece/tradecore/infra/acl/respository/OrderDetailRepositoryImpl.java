@@ -17,20 +17,25 @@
 package com.lazycece.tradecore.infra.acl.respository;
 
 import com.lazycece.rapidf.domain.anotation.DomainRepository;
-import com.lazycece.tradecore.domain.goods.model.Goods;
-import com.lazycece.tradecore.domain.goods.repository.GoodsRepository;
+import com.lazycece.tradecore.domain.order.model.OrderDetail;
+import com.lazycece.tradecore.domain.order.repository.OrderDetailRepository;
 
 import java.util.List;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
 @DomainRepository
-public class GoodsRepositoryImpl implements GoodsRepository {
+public class OrderDetailRepositoryImpl implements OrderDetailRepository {
 
     @Override
-    public List<Goods> queryByGoodsIdList(List<String> goodsIdList) {
+    public void batchInsert(List<OrderDetail> orderDetailList) {
+
+    }
+
+    @Override
+    public List<OrderDetail> queryByOrderId(String orderId) {
         return null;
     }
 }

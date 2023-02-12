@@ -14,23 +14,21 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.infra.acl.respository;
+package com.lazycece.tradecore.infra.acl.producer;
 
-import com.lazycece.rapidf.domain.anotation.DomainRepository;
-import com.lazycece.tradecore.domain.goods.model.Goods;
-import com.lazycece.tradecore.domain.goods.repository.GoodsRepository;
-
-import java.util.List;
+import com.lazycece.rapidf.domain.event.DomainEvent;
+import com.lazycece.tradecore.domain.order.event.OrderDomainEventPublisher;
+import org.springframework.stereotype.Component;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
-@DomainRepository
-public class GoodsRepositoryImpl implements GoodsRepository {
+@Component
+public class OrderDomainEventPublisherImpl implements OrderDomainEventPublisher {
 
     @Override
-    public List<Goods> queryByGoodsIdList(List<String> goodsIdList) {
-        return null;
+    public void publish(DomainEvent event) {
+
     }
 }

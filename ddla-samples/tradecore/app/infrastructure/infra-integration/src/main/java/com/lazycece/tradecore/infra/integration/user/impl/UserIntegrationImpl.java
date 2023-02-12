@@ -14,23 +14,13 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.infra.acl.respository;
+package com.lazycece.tradecore.infra.integration.user.impl;
 
-import com.lazycece.rapidf.domain.anotation.DomainRepository;
-import com.lazycece.tradecore.domain.goods.model.Goods;
-import com.lazycece.tradecore.domain.goods.repository.GoodsRepository;
-
-import java.util.List;
+import com.lazycece.tradecore.infra.integration.user.UserIntegration;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
-@DomainRepository
-public class GoodsRepositoryImpl implements GoodsRepository {
-
-    @Override
-    public List<Goods> queryByGoodsIdList(List<String> goodsIdList) {
-        return null;
-    }
+public class UserIntegrationImpl implements UserIntegration {
 }

@@ -17,20 +17,32 @@
 package com.lazycece.tradecore.infra.acl.respository;
 
 import com.lazycece.rapidf.domain.anotation.DomainRepository;
-import com.lazycece.tradecore.domain.goods.model.Goods;
-import com.lazycece.tradecore.domain.goods.repository.GoodsRepository;
+import com.lazycece.rapidf.domain.model.Pagination;
+import com.lazycece.tradecore.domain.order.model.OrderInfo;
+import com.lazycece.tradecore.domain.order.model.OrderQueryCondition;
+import com.lazycece.tradecore.domain.order.repository.OrderInfoRepository;
 
 import java.util.List;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
 @DomainRepository
-public class GoodsRepositoryImpl implements GoodsRepository {
+public class OrderInfoRepositoryImpl implements OrderInfoRepository {
 
     @Override
-    public List<Goods> queryByGoodsIdList(List<String> goodsIdList) {
+    public String insert(OrderInfo orderInfo) {
+        return null;
+    }
+
+    @Override
+    public OrderInfo queryByOrderId(String userId, String orderId) {
+        return null;
+    }
+
+    @Override
+    public List<OrderInfo> queryByCondition(OrderQueryCondition queryCondition, Pagination pagination) {
         return null;
     }
 }
