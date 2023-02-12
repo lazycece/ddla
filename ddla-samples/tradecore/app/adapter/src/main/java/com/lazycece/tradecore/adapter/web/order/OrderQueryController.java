@@ -16,9 +16,34 @@
 
 package com.lazycece.tradecore.adapter.web.order;
 
+import com.lazycece.rapidf.restful.response.RespData;
+import com.lazycece.tradecore.facade.order.api.OrderQueryFacade;
+import com.lazycece.tradecore.facade.order.request.OrderListQueryRequest;
+import com.lazycece.tradecore.facade.order.request.OrderQueryRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
+@RestController
+@RequestMapping("/order")
 public class OrderQueryController {
+
+    @Autowired
+    private OrderQueryFacade queryFacade;
+
+    @GetMapping("/query")
+    public RespData<?> queryOrder(@Validated OrderQueryRequest request) {
+        return queryFacade.queryOrder(request);
+    }
+
+    @GetMapping("/queryList")
+    public RespData<?> queryList(@Validated OrderListQueryRequest request) {
+        return queryFacade.queryOrderList(request);
+    }
 }

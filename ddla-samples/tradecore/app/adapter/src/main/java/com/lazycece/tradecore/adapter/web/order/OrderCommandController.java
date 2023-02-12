@@ -16,9 +16,34 @@
 
 package com.lazycece.tradecore.adapter.web.order;
 
+import com.lazycece.rapidf.restful.response.RespData;
+import com.lazycece.tradecore.facade.order.api.OrderCommandFacade;
+import com.lazycece.tradecore.facade.order.request.OrderCancelRequest;
+import com.lazycece.tradecore.facade.order.request.OrderCreateRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
+@RestController
+@RequestMapping("/order")
 public class OrderCommandController {
+
+    @Autowired
+    private OrderCommandFacade commandFacade;
+
+    @PostMapping("/create")
+    public RespData<?> createOrder(@Validated OrderCreateRequest request) {
+        return commandFacade.createOrder(request);
+    }
+
+    @PostMapping("/cancel")
+    public RespData<?> cancelOrder(@Validated OrderCancelRequest request) {
+        return commandFacade.cancelOrder(request);
+    }
 }
