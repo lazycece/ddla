@@ -16,9 +16,71 @@
 
 package com.lazycece.tradecore.application.order;
 
+import com.lazycece.rapidf.domain.anotation.ApplicationService;
+import com.lazycece.rapidf.domain.model.Pagination;
+import com.lazycece.rapidf.restful.Assert;
+import com.lazycece.rapidf.restful.PageData;
+import com.lazycece.rapidf.restful.response.RespData;
+import com.lazycece.rapidf.restful.response.RespStatus;
+import com.lazycece.rapidf.utils.DefaultUtils;
+import com.lazycece.rapidf.utils.EnumUtils;
+import com.lazycece.tradecore.application.order.converter.OrderConverter;
+import com.lazycece.tradecore.domain.order.model.OrderInfo;
+import com.lazycece.tradecore.domain.order.model.OrderQueryCondition;
+import com.lazycece.tradecore.domain.order.model.OrderStatus;
+import com.lazycece.tradecore.domain.order.repository.OrderInfoRepository;
+import com.lazycece.tradecore.facade.order.api.OrderQueryFacade;
+import com.lazycece.tradecore.facade.order.dto.OrderInfoDTO;
+import com.lazycece.tradecore.facade.order.request.OrderListQueryRequest;
+import com.lazycece.tradecore.facade.order.request.OrderQueryRequest;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
-public class OrderQueryFacadeImpl {
+@ApplicationService
+public class OrderQueryFacadeImpl implements OrderQueryFacade {
+
+    @Autowired
+    private OrderInfoRepository orderInfoRepository;
+
+    @Override
+    public RespData<OrderInfoDTO> queryOrder(OrderQueryRequest request) {
+        Assert.notNull(request, RespStatus.PARAM_ERROR, "订单查询请求不能为null");
+        Assert.notBlank(request.getUserId(), RespStatus.PARAM_ERROR, "userId不能为空");
+        Assert.notBlank(request.getOrderId(), RespStatus.PARAM_ERROR, "orderId不能为空");
+
+        OrderInfo orderInfo = orderInfoRepository.queryByOrderId(request.getUserId(), request.getOrderId());
+        Assert.notNull(orderInfo, RespStatus.DATA_NOT_EXIST, "订单信息不存在");
+
+        return RespData.success(OrderConverter.toOrderInfoDTO(orderInfo));
+    }
+
+    @Override
+    public RespData<PageData<OrderInfoDTO>> queryOrderList(OrderListQueryRequest request) {
+        Assert.notNull(request, RespStatus.PARAM_ERROR, "订单列表查询请求不能为null");
+        Assert.notBlank(request.getUserId(), RespStatus.PARAM_ERROR, "userId不能为空");
+
+        OrderQueryCondition queryCondition = new OrderQueryCondition();
+        queryCondition.setUserId(request.getUserId());
+
+        if (StringUtils.isNotBlank(request.getOrderStatus())) {
+            OrderStatus orderStatus = EnumUtils.getEnum(OrderStatus.class, request.getOrderStatus());
+            Assert.notNull(orderStatus, RespStatus.PARAM_ERROR,
+                    "订单状态值错误, orderStatus=%s", request.getOrderStatus());
+            queryCondition.setOrderStatus(orderStatus);
+        }
+
+        Pagination pagination = new Pagination(request.getPage(), request.getSize());
+        List<OrderInfo> orderInfoList = orderInfoRepository.queryByCondition(queryCondition, pagination);
+        List<OrderInfoDTO> list = DefaultUtils.defaultList(orderInfoList)
+                .stream().map(OrderConverter::toOrderInfoDTO)
+                .collect(Collectors.toList());
+        return RespData.success(new PageData<>(list, pagination.getCount()));
+    }
 }
