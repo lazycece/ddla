@@ -14,18 +14,13 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.bootstrap;
+package com.lazycece.tradecore.infra.integration.user.impl;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import com.lazycece.tradecore.infra.integration.user.UserAddressIntegration;
 
-@ComponentScan(basePackages = {"com.lazycece.tradecore"})
-@SpringBootApplication
-public class BootstrapApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(BootstrapApplication.class, args);
-    }
-
+/**
+ * @author lazycece
+ * @date 2023/2/12
+ */
+public class UserAddressIntegrationImpl implements UserAddressIntegration {
 }

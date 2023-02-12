@@ -1,0 +1,4 @@
+GET {{httpUrl}}/order/query?userId=123&orderId=
+Accept: application/json
+
+###
