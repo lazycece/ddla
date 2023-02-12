@@ -16,9 +16,14 @@
 
 package com.lazycece.tradecore.application.goods;
 
+import com.lazycece.rapidf.domain.anotation.ApplicationService;
+import com.lazycece.tradecore.facade.goods.api.GoodsCommandFacade;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
-public class GoodsCommandFacadeImpl {
+@ApplicationService
+public class GoodsCommandFacadeImpl implements GoodsCommandFacade {
+
 }
