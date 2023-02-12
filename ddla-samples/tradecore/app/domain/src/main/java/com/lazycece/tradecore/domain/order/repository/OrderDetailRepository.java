@@ -16,9 +16,17 @@
 
 package com.lazycece.tradecore.domain.order.repository;
 
+import com.lazycece.tradecore.domain.order.model.OrderDetail;
+
+import java.util.List;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
 public interface OrderDetailRepository {
+
+    void batchInsert(List<OrderDetail> orderDetailList);
+
+    List<OrderDetail> queryByOrderId(String orderId);
 }

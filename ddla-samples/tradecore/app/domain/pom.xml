@@ -14,6 +14,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.lazycece.ddla</groupId>
+            <artifactId>tradecore-facade</artifactId>
+            <version>${project-facade.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.lazycece.rapidf</groupId>
             <artifactId>rapidf-domain</artifactId>
         </dependency>
@@ -24,6 +29,14 @@
         <dependency>
             <groupId>com.lazycece.rapidf</groupId>
             <artifactId>rapidf-logger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

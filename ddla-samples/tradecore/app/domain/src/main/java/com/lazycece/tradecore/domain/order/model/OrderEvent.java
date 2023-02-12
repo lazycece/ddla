@@ -16,8 +16,10 @@
 
 package com.lazycece.tradecore.domain.order.model;
 
-import com.lazycece.rapidf.domain.anotation.DomainEntity;
-import com.lazycece.rapidf.domain.model.Entity;
+import com.lazycece.rapidf.domain.anotation.DomainFactory;
+import com.lazycece.rapidf.domain.anotation.ValueObject;
+import com.lazycece.rapidf.domain.event.DomainEvent;
+import com.lazycece.tradecore.domain.order.event.OrderEventType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,23 +27,29 @@ import java.math.BigDecimal;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
+@ValueObject
 @Getter
 @Setter
-@DomainEntity
-public class OrderDetail extends Entity<String> {
+public class OrderEvent {
 
-    private String orderDetailId;
+    private OrderEventType eventType;
     private String orderId;
     private String userId;
-    private String goodsId;
-    private Integer goodCount;
-    private BigDecimal goodsPrice;
+    private String addressId;
     private BigDecimal amount;
+    private OrderStatus orderStatus;
 
-    @Override
-    public String getId() {
-        return this.orderDetailId;
+    @DomainFactory
+    public static DomainEvent<OrderEvent> build(OrderEventType eventType, OrderInfo orderInfo) {
+        OrderEvent event = new OrderEvent();
+        event.setEventType(eventType);
+        event.setUserId(orderInfo.getUserId());
+        event.setOrderId(orderInfo.getOrderId());
+        event.setAddressId(orderInfo.getAddressId());
+        event.setAmount(orderInfo.getAmount());
+        event.setOrderStatus(orderInfo.getOrderStatus());
+        return new DomainEvent<>(event);
     }
 }

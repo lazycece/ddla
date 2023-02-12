@@ -14,31 +14,22 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.domain.goods.model;
+package com.lazycece.tradecore.domain.order.event;
 
-import com.lazycece.rapidf.domain.anotation.DomainEntity;
-import com.lazycece.rapidf.domain.model.Entity;
+import com.lazycece.rapidf.domain.model.BaseEnum;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
-
-import java.math.BigDecimal;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
+@AllArgsConstructor
 @Getter
-@Setter
-@DomainEntity
-public class Goods extends Entity<String> {
+public enum OrderEventType implements BaseEnum<String> {
 
-    private String goodsId;
-    private String name;
-    private BigDecimal price;
-    private GoodsStatus goodsStatus;
+    ORDER_CREATED("ORDER_CREATED", "订单已创建");
 
-    @Override
-    public String getId() {
-        return this.goodsId;
-    }
+    private final String code;
+    private final String desc;
 }

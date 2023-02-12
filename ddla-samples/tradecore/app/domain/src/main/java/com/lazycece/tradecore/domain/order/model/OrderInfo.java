@@ -35,6 +35,7 @@ public class OrderInfo extends Aggregate<String> {
 
     private String orderId;
     private String userId;
+    private String addressId;
     private BigDecimal amount;
     private OrderStatus orderStatus;
     private List<OrderDetail> orderDetailList;

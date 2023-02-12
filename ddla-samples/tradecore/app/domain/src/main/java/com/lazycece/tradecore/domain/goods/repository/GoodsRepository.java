@@ -16,9 +16,15 @@
 
 package com.lazycece.tradecore.domain.goods.repository;
 
+import com.lazycece.tradecore.domain.goods.model.Goods;
+
+import java.util.List;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
 public interface GoodsRepository {
+
+    List<Goods> queryByGoodsIdList(List<String> goodsIdList);
 }

@@ -16,9 +16,21 @@
 
 package com.lazycece.tradecore.domain.order.repository;
 
+import com.lazycece.rapidf.domain.model.Pagination;
+import com.lazycece.tradecore.domain.order.model.OrderInfo;
+import com.lazycece.tradecore.domain.order.model.OrderQueryCondition;
+
+import java.util.List;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
 public interface OrderInfoRepository {
+
+    String insert(OrderInfo orderInfo);
+
+    OrderInfo queryByOrderId(String userId, String orderId);
+
+    List<OrderInfo> queryByCondition(OrderQueryCondition queryCondition, Pagination pagination);
 }

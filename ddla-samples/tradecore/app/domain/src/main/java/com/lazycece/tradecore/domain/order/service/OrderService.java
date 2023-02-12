@@ -16,9 +16,15 @@
 
 package com.lazycece.tradecore.domain.order.service;
 
+import com.lazycece.tradecore.domain.order.model.OrderInfo;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
 public interface OrderService {
+
+    String createOrder(OrderInfo orderInfo);
+
+    void cancelOrder(String userId, String orderId);
 }

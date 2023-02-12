@@ -16,22 +16,9 @@
 
 package com.lazycece.tradecore.domain.goods.model;
 
-import com.lazycece.rapidf.domain.model.BaseEnum;
-
 /**
  * @author lazycece
  * @date 2023/2/11
  */
-public enum GoodsStatus implements BaseEnum<String> {
-    ;
-
-    @Override
-    public String getCode() {
-        return null;
-    }
-
-    @Override
-    public String getDesc() {
-        return null;
-    }
+public enum GoodsStatus {
 }

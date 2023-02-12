@@ -14,31 +14,14 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.domain.goods.model;
+package com.lazycece.tradecore.domain.order.event;
 
-import com.lazycece.rapidf.domain.anotation.DomainEntity;
-import com.lazycece.rapidf.domain.model.Entity;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.math.BigDecimal;
+import com.lazycece.rapidf.domain.event.DomainEventPublisher;
+import com.lazycece.tradecore.domain.order.model.OrderEvent;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
-@Getter
-@Setter
-@DomainEntity
-public class Goods extends Entity<String> {
-
-    private String goodsId;
-    private String name;
-    private BigDecimal price;
-    private GoodsStatus goodsStatus;
-
-    @Override
-    public String getId() {
-        return this.goodsId;
-    }
+public interface OrderDomainEventPublisher extends DomainEventPublisher<OrderEvent> {
 }

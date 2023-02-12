@@ -17,21 +17,25 @@
 package com.lazycece.tradecore.domain.order.model;
 
 import com.lazycece.rapidf.domain.model.BaseEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author lazycece
  * @date 2023/2/11
  */
+@Getter
+@AllArgsConstructor
 public enum OrderStatus implements BaseEnum<String> {
+
+    WAIT_PAY("WAIT_PAY", "待支付"),
+    IN_PAY("IN_PAY", "支付中"),
+    PAY_SUCCESS("PAY_SUCCESS", "支付成功"),
+    PAY_FAIL("PAY_FAIL", "支付失败"),
+    SHIPPED("SHIPPED", "已发货"),
+    REFUNDED("REFUNDED", "已退款"),
     ;
 
-    @Override
-    public String getCode() {
-        return null;
-    }
-
-    @Override
-    public String getDesc() {
-        return null;
-    }
+    private final String code;
+    private final String desc;
 }
