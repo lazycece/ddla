@@ -14,20 +14,26 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.facade.order.api;
+package com.lazycece.tradecore.facade.order.dto;
 
-import com.lazycece.rapidf.restful.response.RespData;
-import com.lazycece.tradecore.facade.order.request.OrderCancelRequest;
-import com.lazycece.tradecore.facade.order.request.OrderCreateRequest;
-import com.lazycece.tradecore.facade.order.result.OrderCreateResult;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
-public interface OrderCommandFacade {
+@Getter
+@Setter
+public class OrderDetailDTO {
 
-    RespData<OrderCreateResult> createOrder(OrderCreateRequest request);
-
-    RespData<Void> cancelOrder(OrderCancelRequest request);
+    private String orderDetailId;
+    private String orderId;
+    private String userId;
+    private String goodsId;
+    private Integer goodCount;
+    private BigDecimal goodsPrice;
+    private BigDecimal amount;
 }

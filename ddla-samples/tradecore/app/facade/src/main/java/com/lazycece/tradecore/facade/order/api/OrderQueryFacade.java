@@ -16,9 +16,19 @@
 
 package com.lazycece.tradecore.facade.order.api;
 
+import com.lazycece.rapidf.restful.PageData;
+import com.lazycece.rapidf.restful.response.RespData;
+import com.lazycece.tradecore.facade.order.dto.OrderInfoDTO;
+import com.lazycece.tradecore.facade.order.request.OrderListQueryRequest;
+import com.lazycece.tradecore.facade.order.request.OrderQueryRequest;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
 public interface OrderQueryFacade {
+
+    RespData<OrderInfoDTO> queryOrder(OrderQueryRequest request);
+
+    RespData<PageData<OrderInfoDTO>> queryOrderList(OrderListQueryRequest request);
 }

@@ -14,20 +14,29 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.facade.order.api;
+package com.lazycece.tradecore.facade.order.request;
 
-import com.lazycece.rapidf.restful.response.RespData;
-import com.lazycece.tradecore.facade.order.request.OrderCancelRequest;
-import com.lazycece.tradecore.facade.order.request.OrderCreateRequest;
-import com.lazycece.tradecore.facade.order.result.OrderCreateResult;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
-public interface OrderCommandFacade {
+@Getter
+@Setter
+public class OrderCancelRequest implements Serializable {
 
-    RespData<OrderCreateResult> createOrder(OrderCreateRequest request);
+    /**
+     * 序列号
+     */
+    private static final long serialVersionUID = -7440138736029018574L;
 
-    RespData<Void> cancelOrder(OrderCancelRequest request);
+    @NotBlank(message = "userId不能为空")
+    private String userId;
+    @NotBlank(message = "orderId不能为空")
+    private String orderId;
 }
