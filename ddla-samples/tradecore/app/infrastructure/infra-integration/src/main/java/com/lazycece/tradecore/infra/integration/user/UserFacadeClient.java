@@ -14,13 +14,11 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.infra.integration.user.impl;
-
-import com.lazycece.tradecore.infra.integration.user.UserIntegration;
+package com.lazycece.tradecore.infra.integration.user;
 
 /**
  * @author lazycece
  * @date 2023/2/12
  */
-public class UserIntegrationImpl implements UserIntegration {
+public interface UserFacadeClient {
 }

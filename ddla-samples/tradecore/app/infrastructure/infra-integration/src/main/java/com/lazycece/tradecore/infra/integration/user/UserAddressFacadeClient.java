@@ -20,7 +20,7 @@ package com.lazycece.tradecore.infra.integration.user;
  * @author lazycece
  * @date 2023/2/12
  */
-public interface UserAddressIntegration {
+public interface UserAddressFacadeClient {
 
 
 }
