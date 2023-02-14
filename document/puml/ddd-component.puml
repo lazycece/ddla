@@ -59,8 +59,8 @@ Gateway .[#OrangeRed].> MobileAdapter: http
 XxxController -down-> XxxFacadeImpl
 MobileAdapter -down-> XxxFacadeImpl
 
-XxxFacadeImpl -[#Pink]> XxxValidator
-XxxFacadeImpl -[#Pink]> XxxConverter
+XxxFacadeImpl -[#Blue]> XxxValidator
+XxxFacadeImpl -[#Blue]> XxxConverter
 XxxFacadeImpl ..|> XxxFacade
 
 XxxFacadeImpl -down-> Model
