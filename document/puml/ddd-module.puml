@@ -50,7 +50,7 @@ skinparam package {
 ACL -up-> Integration
 ACL -up-> DAL
 
-Domain -left-> Facade
+Domain ..left..> Facade
 Application -down-> Domain
 Infrastructure -up-> Domain
 Adapter -down-> Application
