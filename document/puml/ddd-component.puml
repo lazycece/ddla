@@ -1,0 +1,87 @@
+@startuml ddd-module
+
+cloud "App Modules" {
+
+    [Web] <<app>>
+    [Mobile] <<app>>
+    [Gateway] <<app>>
+    [InnerApp] <<app>>
+    Web -down-> Gateway
+    Mobile -down-> Gateway
+}
+package "Client Modules" {
+    component XxxClient
+    package "Facade" {
+        component XxxFacade <<facade>>
+    }
+    XxxClient -left-|> XxxFacade
+}
+package "Adapter" {
+    component XxxController <<adapter>>
+    component MobileAdapter <<adapter>>
+}
+package "Application Kernel"{
+    package "Application" {
+        component XxxFacadeImpl <<application>>
+        component XxxConverter <<application>>
+        component XxxValidator <<application>>
+    }
+    package "Domain" {
+        component Model <<domain>>
+        component Event <<domain>>
+        component Factory <<domain>>
+        component Repository <<domain>>
+        component DomainService <<domain>>
+    }
+    package "Infrastructure" {
+        component InfrastructureService <<infra>>
+        component DomainImpl<<infra>>
+    }
+}
+
+skinparam component {
+    borderColor orange
+    ' backgroundColor gold
+    backgroundColor<<domain>> Gold
+    backgroundColor<<infra>> DarkKhaki
+    backgroundColor<<app>> PaleGoldenRod
+    backgroundColor<<adapter>> DarkKhaki
+    backgroundColor<<facade>> DarkKhaki
+    backgroundColor<<bootstrap>> GreenYellow
+}
+
+InnerApp -> XxxClient
+XxxClient .[#OrangeRed]> XxxController: http
+XxxClient .[#OrangeRed]> XxxFacadeImpl: rpc
+
+Gateway .[#OrangeRed]> XxxController: http
+Gateway .[#OrangeRed].> MobileAdapter: http
+XxxController -down-> XxxFacadeImpl
+MobileAdapter -down-> XxxFacadeImpl
+
+XxxFacadeImpl -[#Pink]> XxxValidator
+XxxFacadeImpl -[#Pink]> XxxConverter
+XxxFacadeImpl ..|> XxxFacade
+
+XxxFacadeImpl -down-> Model
+XxxFacadeImpl -down-> Event
+XxxFacadeImpl -down-> Repository
+XxxFacadeImpl -down-> DomainService
+XxxFacadeImpl -down-> InfrastructureService
+
+DomainService -[#Blue]> Model
+DomainService -[#Blue]> Repository
+DomainService -[#Blue]> Factory
+DomainService <-[#Blue]-> Event
+Event -[#Blue]> Model
+Event -[#Blue]> Repository
+Factory -[#Blue]> Model
+Repository -[#Blue]> Model
+Repository -[#Blue]> Factory
+
+DomainImpl .up.|> Event
+DomainImpl .up.|> Repository
+DomainImpl .up.|> Factory
+DomainImpl .up.|> DomainService
+DomainImpl -right-> InfrastructureService
+@enduml
