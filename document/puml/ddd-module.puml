@@ -1,0 +1,60 @@
+@startuml ddd-module
+package "Bootstrap" #DarkSeaGreen
+package "Adapter" #PaleGoldenRod {
+    package "web" #PaleGoldenRod{
+    }
+    package "mobile" #PaleGoldenRod{
+    }
+}
+package "Facade" #Gold{
+    package "api" #Gold{
+    }
+    package "dto" #Gold{
+    }
+}
+package "Application" #DarkSalmon {
+    package "validator" #DarkSalmon{
+    }
+    package "converter" #DarkSalmon{
+    }
+    package "applicationservice" #DarkSalmon{
+    }
+    package "command" #DarkSalmon{
+    }
+}
+package "Domain" #Darkorange {
+    package "model" #Darkorange{
+    }
+    package "event" #Darkorange{
+    }
+    package "factory" #Darkorange{
+    }
+    package "repository" #Darkorange{
+    }
+    package "domainservice" #Darkorange{
+    }
+}
+package "Infrastructure" #DarkKhaki {
+    package "ACL" #DarkKhaki{
+    }
+    package "DAL" #DarkKhaki{
+    }
+    package "Integration" #DarkKhaki{
+    }
+}
+
+skinparam package {
+    borderColor white
+}
+
+ACL -up-> Integration
+ACL -up-> DAL
+
+Domain -left-> Facade
+Application -down-> Domain
+Infrastructure -up-> Domain
+Adapter -down-> Application
+Application -left-> Facade
+Application -down-> Infrastructure
+Bootstrap -right-> Adapter
+@enduml
