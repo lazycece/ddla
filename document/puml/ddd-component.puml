@@ -1,7 +1,5 @@
-@startuml ddd-module
-
+@startuml ddd-component
 cloud "App Modules" {
-
     [Web] <<app>>
     [Mobile] <<app>>
     [Gateway] <<app>>
@@ -10,19 +8,24 @@ cloud "App Modules" {
     Mobile -down-> Gateway
 }
 package "Client Modules" {
-    component XxxClient
+    component XxxClient <<client>>
     package "Facade" {
         component XxxFacade <<facade>>
+        note right of XxxFacade: service api
     }
-    XxxClient -left-|> XxxFacade
+    XxxClient -left-|> XxxFacade: integration
 }
 package "Adapter" {
     component XxxController <<adapter>>
     component MobileAdapter <<adapter>>
 }
-package "Application Kernel"{
+node "Application Kernel"{
     package "Application" {
         component XxxFacadeImpl <<application>>
+        note left of XxxFacadeImpl
+        application logic process,
+        may public rpc service
+        end note
         component XxxConverter <<application>>
         component XxxValidator <<application>>
     }
@@ -32,9 +35,13 @@ package "Application Kernel"{
         component Factory <<domain>>
         component Repository <<domain>>
         component DomainService <<domain>>
+        note right of DomainService: domain business logic process
     }
     package "Infrastructure" {
         component InfrastructureService <<infra>>
+        note right of InfrastructureService
+            cache, index, dal, integration, producer, email, ...
+        end note
         component DomainImpl<<infra>>
     }
 }
@@ -42,27 +49,31 @@ package "Application Kernel"{
 skinparam component {
     borderColor orange
     ' backgroundColor gold
+    backgroundColor<<app>> PaleGoldenRod
+    backgroundColor<<client>> LightGreen
+    ' backgroundColor<<adapter>> LightGreen
+    ' backgroundColor<<facade>> LightGreen
+    backgroundColor<<application>> LightBlue
     backgroundColor<<domain>> Gold
     backgroundColor<<infra>> DarkKhaki
-    backgroundColor<<app>> PaleGoldenRod
-    backgroundColor<<adapter>> DarkKhaki
-    backgroundColor<<facade>> DarkKhaki
-    backgroundColor<<bootstrap>> GreenYellow
+    ' backgroundColor<<bootstrap>> GreenYellow
 }
 
-InnerApp -> XxxClient
-XxxClient .[#OrangeRed]> XxxController: http
-XxxClient .[#OrangeRed]> XxxFacadeImpl: rpc
+InnerApp -> XxxClient: invoke
+InnerApp .[#OrangeRed].> XxxController: http
 
-Gateway .[#OrangeRed]> XxxController: http
+XxxClient .[#OrangeRed].> XxxController: http
+XxxClient .[#OrangeRed].> XxxFacadeImpl: rpc
+
+Gateway .[#OrangeRed].> XxxController: http
 Gateway .[#OrangeRed].> MobileAdapter: http
-XxxController -down-> XxxFacadeImpl
-MobileAdapter -down-> XxxFacadeImpl
+
+XxxController -down-> XxxFacadeImpl: invoke
+MobileAdapter -down-> XxxFacadeImpl: invoke
 
 XxxFacadeImpl -[#Blue]> XxxValidator
 XxxFacadeImpl -[#Blue]> XxxConverter
-XxxFacadeImpl ..|> XxxFacade
-
+XxxFacadeImpl ..|> XxxFacade: implement
 XxxFacadeImpl -down-> Model
 XxxFacadeImpl -down-> Event
 XxxFacadeImpl -down-> Repository
@@ -75,13 +86,14 @@ DomainService -[#Blue]> Factory
 DomainService <-[#Blue]-> Event
 Event -[#Blue]> Model
 Event -[#Blue]> Repository
+Event -[#Blue]> Factory
 Factory -[#Blue]> Model
 Repository -[#Blue]> Model
 Repository -[#Blue]> Factory
 
-DomainImpl .up.|> Event
-DomainImpl .up.|> Repository
-DomainImpl .up.|> Factory
-DomainImpl .up.|> DomainService
-DomainImpl -right-> InfrastructureService
+DomainImpl .up.|> Event: implement
+DomainImpl .up.|> Repository: implement
+DomainImpl .up.|> Factory: implement
+DomainImpl .up.|> DomainService: implement
+DomainImpl -right-> InfrastructureService: use
 @enduml

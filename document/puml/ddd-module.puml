@@ -1,50 +1,50 @@
 @startuml ddd-module
-package "Bootstrap" #DarkSeaGreen
-package "Adapter" #PaleGoldenRod {
-    package "web" #PaleGoldenRod{
+package "Bootstrap" #LightGreen
+package "Adapter"  {
+    package "web" {
     }
-    package "mobile" #PaleGoldenRod{
-    }
-}
-package "Facade" #Gold{
-    package "api" #Gold{
-    }
-    package "dto" #Gold{
+    package "mobile" {
     }
 }
-package "Application" #DarkSalmon {
-    package "validator" #DarkSalmon{
+package "Facade" {
+    package "api" {
     }
-    package "converter" #DarkSalmon{
-    }
-    package "applicationservice" #DarkSalmon{
-    }
-    package "command" #DarkSalmon{
+    package "dto" {
     }
 }
-package "Domain" #Darkorange {
-    package "model" #Darkorange{
+package "Application" #LightBlue {
+    package "validator" #LightBlue{
     }
-    package "event" #Darkorange{
+    package "converter" #LightBlue{
     }
-    package "factory" #Darkorange{
+    package "applicationservice" #LightBlue{
     }
-    package "repository" #Darkorange{
-    }
-    package "domainservice" #Darkorange{
+    package "command" #LightBlue{
     }
 }
-package "Infrastructure" #DarkKhaki {
-    package "ACL" #DarkKhaki{
+package "Domain" #Gold {
+    package "model" #Gold{
     }
-    package "DAL" #DarkKhaki{
+    package "event" #Gold{
     }
-    package "Integration" #DarkKhaki{
+    package "factory" #Gold{
+    }
+    package "repository" #Gold{
+    }
+    package "domainservice" #Gold{
+    }
+}
+package "Infrastructure" #PaleGoldenRod {
+    package "ACL" #PaleGoldenRod{
+    }
+    package "DAL" #PaleGoldenRod{
+    }
+    package "Integration" #PaleGoldenRod{
     }
 }
 
 skinparam package {
-    borderColor white
+    ' borderColor white
 }
 
 ACL -up-> Integration
