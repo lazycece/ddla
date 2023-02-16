@@ -23,5 +23,10 @@
             <artifactId>tradecore-facade</artifactId>
             <version>${project-facade.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.lazycece.ddla</groupId>
+            <artifactId>tradecore-infra-acl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

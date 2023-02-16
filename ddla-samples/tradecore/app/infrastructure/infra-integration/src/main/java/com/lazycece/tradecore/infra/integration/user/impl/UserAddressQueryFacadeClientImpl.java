@@ -16,11 +16,11 @@
 
 package com.lazycece.tradecore.infra.integration.user.impl;
 
-import com.lazycece.tradecore.infra.integration.user.UserAddressFacadeClient;
+import com.lazycece.tradecore.infra.integration.user.UserAddressQueryFacadeClient;
 
 /**
  * @author lazycece
  * @date 2023/2/12
  */
-public class UserAddressFacadeClientImpl implements UserAddressFacadeClient {
+public class UserAddressQueryFacadeClientImpl implements UserAddressQueryFacadeClient {
 }
