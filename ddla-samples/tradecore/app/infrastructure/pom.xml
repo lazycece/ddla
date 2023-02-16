@@ -14,8 +14,8 @@
     <description>${project.name}</description>
 
     <modules>
-        <module>infra-dal</module>
-        <module>infra-integration</module>
-        <module>infra-acl</module>
+        <module>dal</module>
+        <module>integration</module>
+        <module>acl</module>
     </modules>
 </project>
