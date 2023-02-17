@@ -16,7 +16,7 @@
         <module>app/facade</module>
         <module>app/adapter</module>
         <module>app/infrastructure</module>
-        <module>app/bootstrap</module>
+        <module>bootstrap</module>
         <module>test</module>
     </modules>
 
