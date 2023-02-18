@@ -23,6 +23,7 @@ import com.lazycece.tradecore.facade.order.request.OrderCreateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,12 +39,12 @@ public class OrderCommandController {
     private OrderCommandFacade commandFacade;
 
     @PostMapping("/create")
-    public RespData<?> createOrder(@Validated OrderCreateRequest request) {
+    public RespData<?> createOrder(@RequestBody @Validated OrderCreateRequest request) {
         return commandFacade.createOrder(request);
     }
 
     @PostMapping("/cancel")
-    public RespData<?> cancelOrder(@Validated OrderCancelRequest request) {
+    public RespData<?> cancelOrder(@RequestBody @Validated OrderCancelRequest request) {
         return commandFacade.cancelOrder(request);
     }
 }

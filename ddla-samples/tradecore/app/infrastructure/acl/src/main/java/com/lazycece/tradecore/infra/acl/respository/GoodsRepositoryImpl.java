@@ -16,10 +16,14 @@
 
 package com.lazycece.tradecore.infra.acl.respository;
 
+import com.google.common.collect.Lists;
 import com.lazycece.rapidf.domain.anotation.DomainRepository;
 import com.lazycece.tradecore.domain.goods.model.Goods;
+import com.lazycece.tradecore.domain.goods.model.GoodsStatus;
 import com.lazycece.tradecore.domain.goods.repository.GoodsRepository;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +35,16 @@ public class GoodsRepositoryImpl implements GoodsRepository {
 
     @Override
     public List<Goods> queryByGoodsIdList(List<String> goodsIdList) {
-        return null;
+        Goods goods = new Goods();
+        goods.setGoodsId("goodsId");
+        goods.setName("name");
+        goods.setPrice(BigDecimal.valueOf(8.88));
+        goods.setGoodsStatus(GoodsStatus.ONLINE);
+        goods.setCreator("124");
+        goods.setUpdater("124");
+        goods.setCreateTime(new Date());
+        goods.setUpdateTime(new Date());
+        goods.setDeleted(false);
+        return Lists.newArrayList(goods);
     }
 }

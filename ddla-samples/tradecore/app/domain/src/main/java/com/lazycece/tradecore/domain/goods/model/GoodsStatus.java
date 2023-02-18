@@ -16,9 +16,22 @@
 
 package com.lazycece.tradecore.domain.goods.model;
 
+import com.lazycece.rapidf.domain.model.BaseEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * @author lazycece
  * @date 2023/2/11
  */
-public enum GoodsStatus {
+@Getter
+@AllArgsConstructor
+public enum GoodsStatus implements BaseEnum<String> {
+
+    ONLINE("ONLINE", "已上线"),
+    OFFLINE("OFFLINE", "已下线");
+
+    private final String code;
+    private final String desc;
+
 }

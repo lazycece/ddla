@@ -18,11 +18,15 @@ package com.lazycece.tradecore.infra.acl.respository;
 
 import com.lazycece.rapidf.domain.anotation.DomainRepository;
 import com.lazycece.rapidf.domain.model.Pagination;
+import com.lazycece.rapidf.utils.UUIDUtils;
 import com.lazycece.tradecore.domain.order.model.OrderInfo;
 import com.lazycece.tradecore.domain.order.model.OrderQueryCondition;
 import com.lazycece.tradecore.domain.order.repository.OrderInfoRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author lazycece
@@ -31,14 +35,26 @@ import java.util.List;
 @DomainRepository
 public class OrderInfoRepositoryImpl implements OrderInfoRepository {
 
+    /**
+     * 集合资源库
+     */
+    private List<OrderInfo> orderInfoList = new ArrayList<>();
+
     @Override
     public String insert(OrderInfo orderInfo) {
-        return null;
+        String orderId = UUIDUtils.uuid();
+        orderInfo.setOrderId(orderId);
+        orderInfoList.add(orderInfo);
+        return orderId;
     }
 
     @Override
     public OrderInfo queryByOrderId(String userId, String orderId) {
-        return null;
+        Optional<OrderInfo> optional = orderInfoList.stream()
+                .filter(orderInfo ->
+                        orderInfo.getOrderId().equals(orderId) && orderInfo.getUserId().equals(userId))
+                .findFirst();
+        return optional.orElse(null);
     }
 
     @Override
