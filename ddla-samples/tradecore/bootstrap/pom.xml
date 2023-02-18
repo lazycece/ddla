@@ -45,7 +45,7 @@
                 </includes>
             </resource>
             <resource>
-                <directory>../conf/env</directory>
+                <directory>../conf/environment</directory>
                 <includes>
                     <include>*.properties</include>
                 </includes>
