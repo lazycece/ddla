@@ -1,0 +1,23 @@
+### createOrder
+POST {{httpUrl}}/order/create
+Content-Type: application/json
+
+{
+  "userId": "123",
+  "addressId": "1001",
+  "goodBuyInfoList": [
+    {
+      "goodsId": "goodsId",
+      "count": 2
+    }
+  ]
+}
+
+### cancelOrder
+POST {{httpUrl}}/order/cancel
+Content-Type: application/json
+
+{
+  "userId": "123",
+  "orderId": "1001"
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${rootArtifactId}</artifactId>
+        <version>${version}</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <artifactId>${artifactId}</artifactId>
+    <name>${project.artifactId}</name>
+    <description>${project.name}</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-facade</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lazycece.rapidf</groupId>
+            <artifactId>rapidf-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lazycece.rapidf</groupId>
+            <artifactId>rapidf-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lazycece.rapidf</groupId>
+            <artifactId>rapidf-logger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+</project>
