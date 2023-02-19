@@ -15,7 +15,7 @@
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-facade</artifactId>
-            <version>${project-facade.version}</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>com.lazycece.rapidf</groupId>
