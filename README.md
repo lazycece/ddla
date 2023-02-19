@@ -3,11 +3,11 @@
 Domain driven design layered architecture .
 
 ## 架构依赖
-![ddd-module](./document/puml/ddd-module.puml)
+![ddd-module](./document/puml/img/ddd-module.png)
 
 ## 数据流向
 
-![ddd-components](./document/puml/ddd-component.puml)
+![ddd-components](./document/puml/img/ddd-component.png)
 
 
 ## 包规范
