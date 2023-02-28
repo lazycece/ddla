@@ -40,8 +40,9 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 
 声明参数如下：
 
-- package 标识指定业务包的父路径，如 com.lazycece.tradecore
+- package 表示指定业务包的父路径，如 com.lazycece.tradecore
 - agg 表示业务聚合标识，如订单 order
+- inm 表示集成业务模块
 
 |模块|模块描述|父package|子package|规范示例|规范说明|
 |---|---|---|---|---|---|
@@ -63,6 +64,18 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 | | | |${agg}.repository|XxxRepository|定义聚合内相关仓库接口|
 | | | |${agg}.service|XxxService|定义聚合内相关领域服务接口|
 | | | |${agg}.service.impl|XxxServiceImpl|定义聚合内相关领域服务接口实现|
+|infrastructure|基础设施层|--|--|--|--|
+|acl|应用防腐层|${package}.infra.acl|service|XxxServiceAclImpl|定义防腐服务实现|
+| | | |repository|XxxRepositoryImpl|定义领域仓储服务实现|
+| | | |converter|XxxConverter|定义基础设施层对象到领域对象（实体、聚合、值对象）的转换器|
+| | | |producer|--|定义消息发送实现|
+| | | |cache|--|定义缓存服务实现|
+|dal|数据库访问层|${package}.infra.dal|dto|XxxDTO|定义数据库访问层的dto|
+| | | |mapper.auto|XxxMapper|定义工具自动生成的mapper|
+| | | |mapper.auto|XxxUdfMapper|定义用户自定义的mapper|
+| | | |po|XxxPO|定义数据库表字段映射的的PO实体|
+|integration|业务系统集成层|${package}.infra.integration|${inm}|XxxClient|定义业务集成客户端|
+| | | |${inm}.impl|XxxClientImpl|定义业务集成客户端实现|
 
 
 <br/>
