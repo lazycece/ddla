@@ -5,6 +5,7 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 ## 应用架构
 
 ### 架构分层
+
 ![ddd-module](./document/puml/img/ddd-module.png)
 
 ### 组件依赖
@@ -36,10 +37,37 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 ```
 
 ### 工程规范
-|module|module描述|package|package描述|规范|
-|---|---|---|---|---|
-|adapter|适配器||||
 
+声明参数如下：
+
+- package 标识指定业务包的父路径，如 com.lazycece.tradecore
+- agg 表示业务聚合标识，如订单 order
+
+|模块|模块描述|父package|子package|规范示例|规范说明|
+|---|---|---|---|---|---|
+|adapter|适配器|${package}.adapter|mobile|XxxAdapter|定义移动端服务适配器|
+| | | |web.{agg}|XxxController|定义web接口适配器|
+|facade|应用门面|${package}.facade|${agg}.api|XxxCommandFacade <br/> XxxQueryFacade|使用CQRS架构模式定义系统门面服务，可用于暴露rpc/rest服务sdk|
+| | | |{agg}.dto|XxxDTO|定义聚合内公用的实体DTO|
+| | | |{agg}.enums|XxxEnum|定义聚合内需要供外部使用的枚举|
+| | | |{agg}.request|XxxRequest|定义服务请求体|
+| | | |{agg}.result|XxxResult|定义服务响应结果|
+|application|应用层|${package}.application|${agg}|XxxCommandFacadeImpl <br/> XxxQueryFacadeImpl|定义业务聚合服务应用层实现,可对外暴露服务|
+| | | |${agg}.assembler|XxxAssembler|定义数据编译器，实现应用层同下层（领域/基础设施）之间的数据编译构建|
+| | | |${agg}.command|XxxCommand|定义命令执行器|
+| | | |${agg}.converter|XxxConverter|定义数据转换器，实现应用层同下层（领域/基础设施）之间的对象转换|
+| | | |${agg}.validator|XxxValidator|定义业务请求校验器，实现复杂参数校验|
+|domain|适配器|${package}.domain|${agg}.event|--|定义领域事件相关定义|
+| | | |${agg}.factory|XxxFactory|定义聚合相关的工程类|
+| | | |${agg}.model|--|定义聚合、实体、值对象等信息|
+| | | |${agg}.repository|XxxRepository|定义聚合内相关仓库接口|
+| | | |${agg}.service|XxxService|定义聚合内相关领域服务接口|
+| | | |${agg}.service.impl|XxxServiceImpl|定义聚合内相关领域服务接口实现|
+
+
+<br/>
+除以上基本规范之外，实际实践中亦可以根据实际情况来添加需要的包路径，以便达到最佳实践效果。
+<br/>
 
 ## DDLA使用
 
