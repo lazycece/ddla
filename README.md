@@ -1,6 +1,6 @@
-# DDLA 借用日语发音“哆啦”
+# DDLA 借用日语发音“duo la”
 
-DDLA (Domain driven design layered architecture)， 结合了领域驱动设计思想和六边形架构思想，是DDD实践下的一种分层架构。
+DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱动设计思想和六边形架构思想，是DDD实践下的一种分层架构。
 
 ## 应用架构
 
@@ -17,7 +17,7 @@ DDLA (Domain driven design layered architecture)， 结合了领域驱动设计�
 
 ## 架构规范
 
-### 应用目录结构
+### 工程结构
 
 ```bash
 .
@@ -35,7 +35,7 @@ DDLA (Domain driven design layered architecture)， 结合了领域驱动设计�
 `-- test
 ```
 
-### 工程实践规范
+### 工程规范
 |module|module描述|package|package描述|规范|
 |---|---|---|---|---|
 |adapter|适配器||||
