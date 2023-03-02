@@ -99,7 +99,6 @@ mvn archetype:generate \
     -DarchetypeGroupId=com.lazycece.ddla \
     -DarchetypeVersion=${ddla-archetype.version}
 ```
-<br/>
 
 ## License
 
