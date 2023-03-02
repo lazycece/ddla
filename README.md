@@ -46,6 +46,8 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 |---|---|---|---|---|---|
 |adapter|适配器|${package}.adapter|mobile|XxxAdapter|定义移动端服务适配器|
 | | | |web.{agg}|XxxController|定义web接口适配器|
+| | | |job|XxxJob|定义任务适配器|
+| | | |consumer|XxxConsumer|定义消息消费者适配器|
 |facade|应用门面|${package}.facade|${agg}.api|XxxCommandFacade <br/> XxxQueryFacade|使用CQRS架构模式定义系统门面服务，可用于暴露rpc/rest服务sdk|
 | | | |{agg}.dto|XxxDTO|定义聚合内公用的实体DTO|
 | | | |{agg}.enums|XxxEnum|定义聚合内需要供外部使用的枚举|
