@@ -12,6 +12,8 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 
 ![ddd-components](./document/puml/img/ddd-component.png)
 
+<br/>
+
 ### 数据依赖
 
 ![ddd-data](./document/puml/img/ddd-data.png)
