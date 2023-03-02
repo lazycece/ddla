@@ -1,22 +1,18 @@
-# DDLA 借用日语发音“duo la”
+# DDLA
 
 DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱动设计思想和六边形架构思想，是DDD实践下的一种分层架构。
 
-## 应用架构
-
-### 架构分层
+## 架构分层
 
 ![ddd-module](./document/puml/img/ddd-module.png)
 
-### 组件依赖
+<br/>
+
+## 架构依赖
 
 ![ddd-components](./document/puml/img/ddd-component.png)
 
 <br/>
-
-### 数据依赖
-
-![ddd-data](./document/puml/img/ddd-data.png)
 
 ## 架构规范
 
@@ -87,7 +83,7 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 除以上基本规范之外，实际实践中亦可以根据实际情况来添加需要的包路径，以便达到最佳实践效果。
 <br/>
 
-## DDLA使用
+## DDLA 使用
 
 使用如下maven命令，替换**groupId**、**artifactId**、**version**、**package**等参数为你期望的值。
 
@@ -101,6 +97,7 @@ mvn archetype:generate \
     -DarchetypeGroupId=com.lazycece.ddla \
     -DarchetypeVersion=${ddla-archetype.version}
 ```
+<br/>
 
 ## License
 
