@@ -59,20 +59,23 @@ DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱�
 | | | |${agg}.converter|XxxConverter|定义数据转换器，实现应用层同下层（领域/基础设施）之间的对象转换|
 | | | |${agg}.validator|XxxValidator|定义业务请求校验器，实现复杂参数校验|
 |domain|适配器|${package}.domain|${agg}.event|--|定义领域事件相关定义|
-| | | |${agg}.factory|XxxFactory|定义聚合相关的工程类|
+| | | |${agg}.factory|XxxFactory|定义聚合相关的工厂类|
 | | | |${agg}.model|--|定义聚合、实体、值对象等信息|
 | | | |${agg}.repository|XxxRepository|定义聚合内相关仓库接口|
 | | | |${agg}.service|XxxService|定义聚合内相关领域服务接口|
 | | | |${agg}.service.impl|XxxServiceImpl|定义聚合内相关领域服务接口实现|
+| | | |${agg}.service.statemachine|--|定义聚合的状态机实现|
+| | | |common.constants|--|定义应用域内的通用子域常量|
+| | | |common.utils|--|定义应用域内的通用子域工具|
 |infrastructure|基础设施层|--|--|--|--|
-|acl|应用防腐层|${package}.infra.acl|service|XxxServiceAclImpl|定义防腐服务实现|
+|acl|应用防腐层|${package}.infra.acl|service|XxxServiceImpl|定义防腐服务实现|
 | | | |repository|XxxRepositoryImpl|定义领域仓储服务实现|
 | | | |converter|XxxConverter|定义基础设施层对象到领域对象（实体、聚合、值对象）的转换器|
 | | | |producer|--|定义消息发送实现|
 | | | |cache|--|定义缓存服务实现|
 |dal|数据库访问层|${package}.infra.dal|dto|XxxDTO|定义数据库访问层的dto|
 | | | |mapper.auto|XxxMapper|定义工具自动生成的mapper|
-| | | |mapper.auto|XxxUdfMapper|定义用户自定义的mapper|
+| | | |mapper.udf|XxxUdfMapper|定义用户自定义的mapper|
 | | | |po|XxxPO|定义数据库表字段映射的的PO实体|
 |integration|业务系统集成层|${package}.infra.integration|${inm}|XxxClient|定义业务集成客户端|
 | | | |${inm}.impl|XxxClientImpl|定义业务集成客户端实现|
