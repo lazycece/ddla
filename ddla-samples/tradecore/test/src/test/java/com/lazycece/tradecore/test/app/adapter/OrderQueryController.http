@@ -1,0 +1,5 @@
+### queryOrder
+GET {{httpUrl}}/order/query?userId=123&orderId=9c1f18a28f9246a3a5230d972feef719
+
+### queryList
+GET {{httpUrl}}/order/queryList?userId=123&page=1&size=10&orderStatus=WAIT_PAY
