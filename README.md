@@ -1,5 +1,10 @@
 # DDLA
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.lazycece.ddla/ddla)](https://search.maven.org/search?q=ddla)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![GitHub release](https://img.shields.io/badge/release-download-orange.svg)](https://github.com/lazycece/ddla/releases)
+
+
 DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱动设计思想和六边形架构思想，是DDD实践下的一种分层架构。
 
 ## 架构分层
