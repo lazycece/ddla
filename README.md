@@ -5,7 +5,7 @@
 [![GitHub release](https://img.shields.io/badge/release-download-orange.svg)](https://github.com/lazycece/ddla/releases)
 
 
-DDLA (`D`omain `d`riven design `l`ayered `a`rchitecture)， 结合了领域驱动设计思想和六边形架构思想，是DDD实践下的一种分层架构。
+DDLA (**D**omain **D**riven Design **L**ayered **A**rchitecture)， 结合了领域驱动设计思想和六边形架构思想，是DDD实践下的一种分层架构。
 
 ## 架构分层
 
