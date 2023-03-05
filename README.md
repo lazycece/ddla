@@ -1,6 +1,6 @@
 # DDLA
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.lazycece.ddla/ddla)](https://search.maven.org/search?q=ddla)
+[![Maven Central](https://img.shields.io/maven-central/v/com.lazycece.ddla/ddla-archetype)](https://search.maven.org/search?q=ddla-archetype)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![GitHub release](https://img.shields.io/badge/release-download-orange.svg)](https://github.com/lazycece/ddla/releases)
 
