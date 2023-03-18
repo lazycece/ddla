@@ -24,7 +24,19 @@ import com.lazycece.tradecore.domain.order.model.OrderInfo;
  */
 public interface OrderService {
 
+    /**
+     * Create order.
+     *
+     * @param orderInfo ${@link OrderInfo}
+     * @return order id
+     */
     String createOrder(OrderInfo orderInfo);
 
+    /**
+     * Cancel order.
+     *
+     * @param userId  user id
+     * @param orderId order id
+     */
     void cancelOrder(String userId, String orderId);
 }

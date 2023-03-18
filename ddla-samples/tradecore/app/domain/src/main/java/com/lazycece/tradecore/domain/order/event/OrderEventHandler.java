@@ -16,12 +16,8 @@
 
 package com.lazycece.tradecore.domain.order.event;
 
-import com.lazycece.rapidf.domain.event.DomainEventPublisher;
-import com.lazycece.tradecore.domain.order.model.OrderEvent;
-
 /**
  * @author lazycece
- * @date 2023/2/12
  */
-public interface OrderDomainEventPublisher extends DomainEventPublisher<OrderEvent> {
+public interface OrderEventHandler {
 }

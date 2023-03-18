@@ -17,18 +17,21 @@
 package com.lazycece.tradecore.infra.acl.producer;
 
 import com.lazycece.rapidf.domain.event.DomainEvent;
-import com.lazycece.tradecore.domain.order.event.OrderDomainEventPublisher;
-import org.springframework.stereotype.Component;
+import com.lazycece.rapidf.domain.event.handler.DomainEventHandler;
+import com.lazycece.rapidf.domain.event.handler.EventHandler;
+import com.lazycece.tradecore.domain.order.event.OrderEventHandler;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author lazycece
- * @date 2023/2/12
  */
-@Component
-public class OrderDomainEventPublisherImpl implements OrderDomainEventPublisher {
+@Slf4j
+@EventHandler(type = "com.lazycece.tradecore.domain.order.event.OrderEventModel")
+public class OrderEventProducerHandler implements OrderEventHandler, DomainEventHandler {
 
     @Override
-    public void publish(DomainEvent event) {
+    public void handle(DomainEvent event) {
+        log.info("================== order event message producer");
 
     }
 }

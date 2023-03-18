@@ -25,7 +25,6 @@ import com.lazycece.tradecore.domain.order.repository.OrderInfoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -38,7 +37,7 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
     /**
      * 集合资源库
      */
-    private List<OrderInfo> orderInfoList = new ArrayList<>();
+    private final List<OrderInfo> orderInfoList = new ArrayList<>();
 
     @Override
     public String insert(OrderInfo orderInfo) {

@@ -14,9 +14,9 @@
  *    limitations under the License.
  */
 
-package com.lazycece.tradecore.domain.order.event;
+package com.lazycece.tradecore.domain.order.model;
 
-import com.lazycece.rapidf.domain.model.BaseEnum;
+import com.lazycece.rapidf.domain.statemachine.StateEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -26,9 +26,16 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum OrderEventType implements BaseEnum<String> {
+public enum OrderEventAction implements StateEvent<String> {
 
-    ORDER_CREATED("ORDER_CREATED", "订单已创建");
+    ORDER_CREATE("ORDER_CREATE", "订单创建"),
+    ORDER_CANCEL("ORDER_CANCEL", "订单取消"),
+    ORDER_PAYMENT("ORDER_PAYMENT", "订单支付"),
+    PAY_SUCCESS("PAY_SUCCESS", "支付成功"),
+    PAY_FAIL("PAY_FAIL", "支付失败"),
+    ORDER_SHIP("ORDER_SHIP", "订单发货"),
+    ORDER_REFUND("ORDER_REFUND", "订单退款"),
+    ;
 
     private final String code;
     private final String desc;

@@ -17,13 +17,15 @@
 package com.lazycece.tradecore.domain.order.service.impl;
 
 import com.lazycece.rapidf.domain.anotation.DomainService;
+import com.lazycece.rapidf.domain.event.DomainEvent;
+import com.lazycece.rapidf.domain.event.DomainEventBuilder;
+import com.lazycece.rapidf.domain.event.DomainEventPublisher;
 import com.lazycece.rapidf.restful.Assert;
 import com.lazycece.rapidf.restful.response.RespStatus;
 import com.lazycece.rapidf.utils.DefaultUtils;
-import com.lazycece.tradecore.domain.order.event.OrderDomainEventPublisher;
-import com.lazycece.tradecore.domain.order.event.OrderEventType;
+import com.lazycece.tradecore.domain.order.model.OrderEventAction;
 import com.lazycece.tradecore.domain.order.model.OrderDetail;
-import com.lazycece.tradecore.domain.order.model.OrderEvent;
+import com.lazycece.tradecore.domain.order.event.OrderEventModel;
 import com.lazycece.tradecore.domain.order.model.OrderInfo;
 import com.lazycece.tradecore.domain.order.repository.OrderDetailRepository;
 import com.lazycece.tradecore.domain.order.repository.OrderInfoRepository;
@@ -49,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private TransactionTemplate transactionTemplate;
     @Autowired
-    private OrderDomainEventPublisher eventPublisher;
+    private DomainEventPublisher eventPublisher;
 
     @Override
     public String createOrder(OrderInfo orderInfo) {
@@ -64,7 +66,13 @@ public class OrderServiceImpl implements OrderService {
                 DefaultUtils.defaultList(orderDetailList)
                         .forEach(orderDetail -> orderDetail.setOrderId(orderId));
                 orderDetailRepository.batchInsert(orderDetailList);
-                eventPublisher.publish(OrderEvent.build(OrderEventType.ORDER_CREATED, orderInfo));
+
+                DomainEvent domainEvent = DomainEventBuilder.builder()
+                        .type(OrderEventModel.class.getName())
+                        .identity(orderId)
+                        .data(OrderEventModel.build(OrderEventAction.ORDER_CREATE, orderInfo))
+                        .build();
+                eventPublisher.publish(domainEvent);
             }
         });
         return orderInfo.getOrderId();
