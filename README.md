@@ -60,7 +60,7 @@ DDLA (**D**omain **D**riven Design **L**ayered **A**rchitecture)， 结合了领
 | | | |{agg}.result|XxxResult|定义服务响应结果|
 |application|应用层|${package}.application|${agg}|XxxCommandFacadeImpl <br/> XxxQueryFacadeImpl|定义业务聚合服务应用层实现,可对外暴露服务|
 | | | |${agg}.assembler|XxxAssembler|定义数据编译器，实现应用层同下层（领域/基础设施）之间的数据编译构建|
-| | | |${agg}.command|XxxCommand|定义命令执行器|
+| | | |${agg}.handler|XxxHandler|定义服务处理器|
 | | | |${agg}.converter|XxxConverter|定义数据转换器，实现应用层同下层（领域/基础设施）之间的对象转换|
 | | | |${agg}.validator|XxxValidator|定义业务请求校验器，实现复杂参数校验|
 |domain|适配器|${package}.domain|${agg}.event|--|定义领域事件相关定义|
