@@ -28,7 +28,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class OrderQueryRequest implements Serializable {
+public class OrderInfoQueryRequest implements Serializable {
 
     /**
      * 序列号

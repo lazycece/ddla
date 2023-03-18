@@ -19,7 +19,7 @@ package com.lazycece.tradecore.adapter.web.order;
 import com.lazycece.rapidf.restful.response.RespData;
 import com.lazycece.tradecore.facade.order.api.OrderQueryFacade;
 import com.lazycece.tradecore.facade.order.request.OrderListQueryRequest;
-import com.lazycece.tradecore.facade.order.request.OrderQueryRequest;
+import com.lazycece.tradecore.facade.order.request.OrderInfoQueryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +38,7 @@ public class OrderQueryController {
     private OrderQueryFacade queryFacade;
 
     @GetMapping("/query")
-    public RespData<?> queryOrder(@Validated OrderQueryRequest request) {
+    public RespData<?> queryOrder(@Validated OrderInfoQueryRequest request) {
         return queryFacade.queryOrder(request);
     }
 
