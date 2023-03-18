@@ -17,14 +17,23 @@
  *    limitations under the License.
  */
 
-package ${package}.domain.order.event;
+package ${package}.application.order.handler;
 
-import com.lazycece.rapidf.domain.event.DomainEventPublisher;
-import ${package}.domain.order.model.OrderEvent;
+import com.lazycece.rapidf.domain.anotation.ApplicationHandler;
+import com.lazycece.rapidf.domain.cqrs.CommandHandler;
+import com.lazycece.rapidf.restful.response.RespData;
+import ${package}.facade.order.request.OrderCreateRequest;
+import ${package}.facade.order.result.OrderCreateResult;
 
 /**
  * @author lazycece
- * @date 2023/2/12
  */
-public interface OrderDomainEventPublisher extends DomainEventPublisher<OrderEvent> {
+@ApplicationHandler("order.create.command1.0")
+public class OrderCreateCommandHandler implements CommandHandler<RespData<?>, OrderCreateRequest> {
+
+    @Override
+    public RespData<OrderCreateResult> handle(OrderCreateRequest cmd) {
+
+        return null;
+    }
 }

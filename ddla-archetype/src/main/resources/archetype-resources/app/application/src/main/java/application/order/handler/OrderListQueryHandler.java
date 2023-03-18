@@ -17,29 +17,24 @@
  *    limitations under the License.
  */
 
-package ${package}.domain.order.service;
+package ${package}.application.order.handler;
 
-import ${package}.domain.order.model.OrderInfo;
+import com.lazycece.rapidf.domain.anotation.ApplicationHandler;
+import com.lazycece.rapidf.domain.cqrs.QueryHandler;
+import com.lazycece.rapidf.restful.dto.PageData;
+import com.lazycece.rapidf.restful.response.RespData;
+import ${package}.facade.order.dto.OrderInfoDTO;
+import ${package}.facade.order.request.OrderListQueryRequest;
 
 /**
  * @author lazycece
- * @date 2023/2/11
  */
-public interface OrderService {
+@ApplicationHandler("order.list.query1.0")
+public class OrderListQueryHandler implements QueryHandler<RespData<?>, OrderListQueryRequest> {
 
-    /**
-     * Create order.
-     *
-     * @param orderInfo ${symbol_dollar}{@link OrderInfo}
-     * @return order id
-     */
-    String createOrder(OrderInfo orderInfo);
+    @Override
+    public RespData<PageData<OrderInfoDTO>> handle(OrderListQueryRequest query) {
 
-    /**
-     * Cancel order.
-     *
-     * @param userId  user id
-     * @param orderId order id
-     */
-    void cancelOrder(String userId, String orderId);
+        return null;
+    }
 }

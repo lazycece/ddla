@@ -19,20 +19,8 @@
 
 package ${package}.domain.order.event;
 
-import com.lazycece.rapidf.domain.model.BaseEnum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * @author lazycece
- * @date 2023/2/12
  */
-@AllArgsConstructor
-@Getter
-public enum OrderEventType implements BaseEnum<String> {
-
-    ORDER_CREATED("ORDER_CREATED", "订单已创建");
-
-    private final String code;
-    private final String desc;
+public interface OrderEventHandler {
 }

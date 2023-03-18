@@ -17,12 +17,13 @@
  *    limitations under the License.
  */
 
-package ${package}.domain.order.model;
+package ${package}.domain.order.event;
 
 import com.lazycece.rapidf.domain.anotation.DomainFactory;
 import com.lazycece.rapidf.domain.anotation.ValueObject;
-import com.lazycece.rapidf.domain.event.DomainEvent;
-import ${package}.domain.order.event.OrderEventType;
+import ${package}.domain.order.model.OrderEventAction;
+import ${package}.domain.order.model.OrderInfo;
+import ${package}.domain.order.model.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,9 +36,9 @@ import java.math.BigDecimal;
 @ValueObject
 @Getter
 @Setter
-public class OrderEvent {
+public class OrderEventModel {
 
-    private OrderEventType eventType;
+    private OrderEventAction action;
     private String orderId;
     private String userId;
     private String addressId;
@@ -45,14 +46,14 @@ public class OrderEvent {
     private OrderStatus orderStatus;
 
     @DomainFactory
-    public static DomainEvent<OrderEvent> build(OrderEventType eventType, OrderInfo orderInfo) {
-        OrderEvent event = new OrderEvent();
-        event.setEventType(eventType);
+    public static OrderEventModel build(OrderEventAction action, OrderInfo orderInfo) {
+        OrderEventModel event = new OrderEventModel();
+        event.setAction(action);
         event.setUserId(orderInfo.getUserId());
         event.setOrderId(orderInfo.getOrderId());
         event.setAddressId(orderInfo.getAddressId());
         event.setAmount(orderInfo.getAmount());
         event.setOrderStatus(orderInfo.getOrderStatus());
-        return new DomainEvent<>(event);
+        return event;
     }
 }

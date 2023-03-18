@@ -17,29 +17,22 @@
  *    limitations under the License.
  */
 
-package ${package}.domain.order.service;
+package ${package}.application.order.handler;
 
-import ${package}.domain.order.model.OrderInfo;
+import com.lazycece.rapidf.domain.anotation.ApplicationHandler;
+import com.lazycece.rapidf.domain.cqrs.CommandHandler;
+import com.lazycece.rapidf.restful.response.RespData;
+import ${package}.facade.order.request.OrderCancelRequest;
 
 /**
  * @author lazycece
- * @date 2023/2/11
  */
-public interface OrderService {
+@ApplicationHandler("order.cancel.command1.0")
+public class OrderCancelCommandHandler implements CommandHandler<RespData<?>, OrderCancelRequest> {
 
-    /**
-     * Create order.
-     *
-     * @param orderInfo ${symbol_dollar}{@link OrderInfo}
-     * @return order id
-     */
-    String createOrder(OrderInfo orderInfo);
+    @Override
+    public RespData<?> handle(OrderCancelRequest cmd) {
 
-    /**
-     * Cancel order.
-     *
-     * @param userId  user id
-     * @param orderId order id
-     */
-    void cancelOrder(String userId, String orderId);
+        return null;
+    }
 }

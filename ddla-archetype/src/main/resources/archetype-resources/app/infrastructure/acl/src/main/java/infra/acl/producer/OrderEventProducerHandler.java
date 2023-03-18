@@ -17,29 +17,24 @@
  *    limitations under the License.
  */
 
-package ${package}.facade.order.request;
+package ${package}.infra.acl.producer;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
+import com.lazycece.rapidf.domain.event.DomainEvent;
+import com.lazycece.rapidf.domain.event.handler.DomainEventHandler;
+import com.lazycece.rapidf.domain.event.handler.EventHandler;
+import ${package}.domain.order.event.OrderEventHandler;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author lazycece
- * @date 2023/2/12
  */
-@Getter
-@Setter
-public class OrderQueryRequest implements Serializable {
+@Slf4j
+@EventHandler(type = "${package}.domain.order.event.OrderEventModel")
+public class OrderEventProducerHandler implements OrderEventHandler, DomainEventHandler {
 
-    /**
-     * 序列号
-     */
-    private static final long serialVersionUID = -4383329900461359499L;
+    @Override
+    public void handle(DomainEvent event) {
+        log.info("================== order event message producer");
 
-    @NotBlank(message = "userId不能为空")
-    private String userId;
-    @NotBlank(message = "orderId不能为空")
-    private String orderId;
+    }
 }

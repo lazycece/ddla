@@ -22,7 +22,7 @@ package ${package}.adapter.web.order;
 import com.lazycece.rapidf.restful.response.RespData;
 import ${package}.facade.order.api.OrderQueryFacade;
 import ${package}.facade.order.request.OrderListQueryRequest;
-import ${package}.facade.order.request.OrderQueryRequest;
+import ${package}.facade.order.request.OrderInfoQueryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +41,7 @@ public class OrderQueryController {
     private OrderQueryFacade queryFacade;
 
     @GetMapping("/query")
-    public RespData<?> queryOrder(@Validated OrderQueryRequest request) {
+    public RespData<?> queryOrder(@Validated OrderInfoQueryRequest request) {
         return queryFacade.queryOrder(request);
     }
 

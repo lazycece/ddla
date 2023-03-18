@@ -19,11 +19,11 @@
 
 package ${package}.facade.order.api;
 
-import com.lazycece.rapidf.restful.PageData;
+import com.lazycece.rapidf.restful.dto.PageData;
 import com.lazycece.rapidf.restful.response.RespData;
 import ${package}.facade.order.dto.OrderInfoDTO;
 import ${package}.facade.order.request.OrderListQueryRequest;
-import ${package}.facade.order.request.OrderQueryRequest;
+import ${package}.facade.order.request.OrderInfoQueryRequest;
 
 /**
  * @author lazycece
@@ -31,7 +31,7 @@ import ${package}.facade.order.request.OrderQueryRequest;
  */
 public interface OrderQueryFacade {
 
-    RespData<OrderInfoDTO> queryOrder(OrderQueryRequest request);
+    RespData<OrderInfoDTO> queryOrder(OrderInfoQueryRequest request);
 
     RespData<PageData<OrderInfoDTO>> queryOrderList(OrderListQueryRequest request);
 }

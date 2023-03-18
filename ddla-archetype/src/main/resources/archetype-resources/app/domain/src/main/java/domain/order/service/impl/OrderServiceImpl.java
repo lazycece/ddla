@@ -20,13 +20,15 @@
 package ${package}.domain.order.service.impl;
 
 import com.lazycece.rapidf.domain.anotation.DomainService;
+import com.lazycece.rapidf.domain.event.DomainEvent;
+import com.lazycece.rapidf.domain.event.DomainEventBuilder;
+import com.lazycece.rapidf.domain.event.DomainEventPublisher;
 import com.lazycece.rapidf.restful.Assert;
 import com.lazycece.rapidf.restful.response.RespStatus;
 import com.lazycece.rapidf.utils.DefaultUtils;
-import ${package}.domain.order.event.OrderDomainEventPublisher;
-import ${package}.domain.order.event.OrderEventType;
+import ${package}.domain.order.model.OrderEventAction;
 import ${package}.domain.order.model.OrderDetail;
-import ${package}.domain.order.model.OrderEvent;
+import ${package}.domain.order.event.OrderEventModel;
 import ${package}.domain.order.model.OrderInfo;
 import ${package}.domain.order.repository.OrderDetailRepository;
 import ${package}.domain.order.repository.OrderInfoRepository;
@@ -52,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private TransactionTemplate transactionTemplate;
     @Autowired
-    private OrderDomainEventPublisher eventPublisher;
+    private DomainEventPublisher eventPublisher;
 
     @Override
     public String createOrder(OrderInfo orderInfo) {
@@ -67,7 +69,13 @@ public class OrderServiceImpl implements OrderService {
                 DefaultUtils.defaultList(orderDetailList)
                         .forEach(orderDetail -> orderDetail.setOrderId(orderId));
                 orderDetailRepository.batchInsert(orderDetailList);
-                eventPublisher.publish(OrderEvent.build(OrderEventType.ORDER_CREATED, orderInfo));
+
+                DomainEvent domainEvent = DomainEventBuilder.builder()
+                        .type(OrderEventModel.class.getName())
+                        .identity(orderId)
+                        .data(OrderEventModel.build(OrderEventAction.ORDER_CREATE, orderInfo))
+                        .build();
+                eventPublisher.publish(domainEvent);
             }
         });
         return orderInfo.getOrderId();

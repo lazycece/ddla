@@ -17,29 +17,29 @@
  *    limitations under the License.
  */
 
-package ${package}.domain.order.service;
+package ${package}.facade.order.request;
 
-import ${package}.domain.order.model.OrderInfo;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
-public interface OrderService {
+@Getter
+@Setter
+public class OrderInfoQueryRequest implements Serializable {
 
     /**
-     * Create order.
-     *
-     * @param orderInfo ${symbol_dollar}{@link OrderInfo}
-     * @return order id
+     * 序列号
      */
-    String createOrder(OrderInfo orderInfo);
+    private static final long serialVersionUID = -4383329900461359499L;
 
-    /**
-     * Cancel order.
-     *
-     * @param userId  user id
-     * @param orderId order id
-     */
-    void cancelOrder(String userId, String orderId);
+    @NotBlank(message = "userId不能为空")
+    private String userId;
+    @NotBlank(message = "orderId不能为空")
+    private String orderId;
 }

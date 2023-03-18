@@ -17,21 +17,30 @@
  *    limitations under the License.
  */
 
-package ${package}.infra.acl.producer;
+package ${package}.domain.order.event;
 
 import com.lazycece.rapidf.domain.event.DomainEvent;
-import ${package}.domain.order.event.OrderDomainEventPublisher;
-import org.springframework.stereotype.Component;
+import com.lazycece.rapidf.domain.event.handler.DomainEventHandler;
+import com.lazycece.rapidf.domain.event.handler.EventHandler;
+import ${package}.domain.order.model.OrderStatus;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author lazycece
- * @date 2023/2/12
+ * @date 2023/3/18
  */
-@Component
-public class OrderDomainEventPublisherImpl implements OrderDomainEventPublisher {
+@Slf4j
+@EventHandler(type = "${package}.domain.order.event.OrderEventModel")
+public class OrderCreateEventHandler implements OrderEventHandler, DomainEventHandler {
 
     @Override
-    public void publish(DomainEvent event) {
+    public boolean accept(DomainEvent event) {
+        OrderEventModel eventModel = event.getData(OrderEventModel.class);
+        return eventModel.getOrderStatus() == OrderStatus.WAIT_PAY;
+    }
 
+    @Override
+    public void handle(DomainEvent event) {
+        log.info("================== order create event handler");
     }
 }

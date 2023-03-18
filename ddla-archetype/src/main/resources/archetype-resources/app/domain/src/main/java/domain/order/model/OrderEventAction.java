@@ -17,29 +17,29 @@
  *    limitations under the License.
  */
 
-package ${package}.domain.order.service;
+package ${package}.domain.order.model;
 
-import ${package}.domain.order.model.OrderInfo;
+import com.lazycece.rapidf.domain.statemachine.StateEvent;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author lazycece
- * @date 2023/2/11
+ * @date 2023/2/12
  */
-public interface OrderService {
+@AllArgsConstructor
+@Getter
+public enum OrderEventAction implements StateEvent<String> {
 
-    /**
-     * Create order.
-     *
-     * @param orderInfo ${symbol_dollar}{@link OrderInfo}
-     * @return order id
-     */
-    String createOrder(OrderInfo orderInfo);
+    ORDER_CREATE("ORDER_CREATE", "订单创建"),
+    ORDER_CANCEL("ORDER_CANCEL", "订单取消"),
+    ORDER_PAYMENT("ORDER_PAYMENT", "订单支付"),
+    PAY_SUCCESS("PAY_SUCCESS", "支付成功"),
+    PAY_FAIL("PAY_FAIL", "支付失败"),
+    ORDER_SHIP("ORDER_SHIP", "订单发货"),
+    ORDER_REFUND("ORDER_REFUND", "订单退款"),
+    ;
 
-    /**
-     * Cancel order.
-     *
-     * @param userId  user id
-     * @param orderId order id
-     */
-    void cancelOrder(String userId, String orderId);
+    private final String code;
+    private final String desc;
 }
