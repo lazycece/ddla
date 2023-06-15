@@ -28,6 +28,13 @@ mvn archetype:generate \
 ![ddd-module](./document/puml/img/ddd-module.png)
 
 <br/>
+各模块职责如下：
+
+- adapter：适配器层，是系统流量的入口，将请求分发给应用层去处理具体应用逻辑。该层涵盖业务接口请求、批处理、消息等。
+- facade：门面层，作为系统的门面，用于表达系统对外暴露的能力。
+- application：应用层，是系统的应用逻辑编排层，用于做跨系统或者跨聚合的业务编排，不表达核心控制能力。
+- domain：领域层，作为领域驱动架构的内核，其承载的是系统的核心模型、规则与服务，是整个系统的大脑所在。
+- infrastructure：基础设施层，是系统的基座，其支撑着领域层；该层的定位主要是系统基础能力（缓存、存储等）、下游支撑系统的集成、领域能力的防腐等。
 
 ## 架构依赖
 
@@ -55,6 +62,17 @@ mvn archetype:generate \
 `-- test
 ```
 
+工程结构的各目录职责如下：
+- app：工程应用存放代码的目录，其中子目录是前面架构分层中所说的不同模块
+- bootstrap：应用的启动器，以及除环境之外的配置信息
+- conf：环境相关的配置信息
+- test：工程相关的测试代码
+
+在工程结构上，将基础设施层按职责进行了再次拆分：
+- dal: 数据库交互模块
+- integration：系统集成模块，比如与下游系统的集成，其他基础能力的集成
+- acl：系统防腐层，领域与基础设置之间的防腐隔离
+
 ### 工程规范
 
 声明参数如下：
@@ -62,6 +80,8 @@ mvn archetype:generate \
 - package 表示指定业务包的父路径，如 com.lazycece.tradecore
 - agg 表示业务聚合标识，如订单 order
 - inm 表示集成业务模块
+
+>除以下基本规范之外，实际实践中亦可以根据实际情况来添加或修改包路径，以便达到最佳实践效果。
 
 |模块|模块描述|父package|子package|规范示例|规范说明|
 |---|---|---|---|---|---|
@@ -79,7 +99,7 @@ mvn archetype:generate \
 | | | |${agg}.handler|XxxHandler|定义服务处理器|
 | | | |${agg}.converter|XxxConverter|定义数据转换器，实现应用层同下层（领域/基础设施）之间的对象转换|
 | | | |${agg}.validator|XxxValidator|定义业务请求校验器，实现复杂参数校验|
-|domain|适配器|${package}.domain|${agg}.event|--|定义领域事件相关定义|
+|domain|领域层|${package}.domain|${agg}.event|--|定义领域事件相关定义|
 | | | |${agg}.factory|XxxFactory|定义聚合相关的工厂类|
 | | | |${agg}.model|--|定义聚合、实体、值对象等信息|
 | | | |${agg}.repository|XxxRepository|定义聚合内相关仓库接口|
@@ -101,10 +121,6 @@ mvn archetype:generate \
 |integration|业务系统集成层|${package}.infra.integration|${inm}|XxxClient|定义业务集成客户端|
 | | | |${inm}.impl|XxxClientImpl|定义业务集成客户端实现|
 
-
-<br/>
-除以上基本规范之外，实际实践中亦可以根据实际情况来添加需要的包路径，以便达到最佳实践效果。
-<br/>
 
 ## License
 
