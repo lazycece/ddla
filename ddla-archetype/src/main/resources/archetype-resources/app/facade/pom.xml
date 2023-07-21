@@ -8,7 +8,6 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
     <name>${project.artifactId}</name>
     <description>${project.name}</description>
 

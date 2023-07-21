@@ -19,6 +19,7 @@
       <directory></directory>
       <includes>
         <include>.gitignore</include>
+        <include>deploy.sh</include>
         <include>README.md</include>
       </includes>
     </fileSet>
