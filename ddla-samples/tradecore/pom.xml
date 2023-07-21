@@ -37,7 +37,7 @@
         <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
         <flatten.maven.plugin.version>1.2.7</flatten.maven.plugin.version>
         <!-- Basic core dependencies -->
-        <rapidf-dependencies.version>1.2.2</rapidf-dependencies.version>
+        <rapidf-dependencies.version>1.4.0</rapidf-dependencies.version>
         <spring-boot-dependencies.version>2.5.6</spring-boot-dependencies.version>
         <lombok.version>1.18.24</lombok.version>
         <!-- Company inside dependencies -->
