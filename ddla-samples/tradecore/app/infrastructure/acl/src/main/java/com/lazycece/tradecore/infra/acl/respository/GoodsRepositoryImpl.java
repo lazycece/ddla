@@ -21,7 +21,7 @@ import com.lazycece.tradecore.domain.goods.model.Goods;
 import com.lazycece.tradecore.domain.goods.model.GoodsStatus;
 import com.lazycece.tradecore.domain.goods.repository.GoodsRepository;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -40,8 +40,8 @@ public class GoodsRepositoryImpl implements GoodsRepository {
         goods.setGoodsStatus(GoodsStatus.ONLINE);
         goods.setCreator("124");
         goods.setUpdater("124");
-        goods.setCreateTime(new Date());
-        goods.setUpdateTime(new Date());
+        goods.setCreateTime(LocalDateTime.now());
+        goods.setUpdateTime(LocalDateTime.now());
         goods.setDeleted(false);
         return Lists.newArrayList(goods);
     }

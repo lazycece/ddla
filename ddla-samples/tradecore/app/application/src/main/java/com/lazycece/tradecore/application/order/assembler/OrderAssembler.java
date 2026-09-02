@@ -22,7 +22,7 @@ import com.lazycece.tradecore.domain.order.model.OrderInfo;
 import com.lazycece.tradecore.domain.order.model.OrderStatus;
 import com.lazycece.tradecore.facade.order.request.OrderCreateRequest;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -47,8 +47,8 @@ public class OrderAssembler {
         orderInfo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderInfo.setCreator(request.getUserId());
         orderInfo.setUpdater(request.getUserId());
-        orderInfo.setCreateTime(new Date());
-        orderInfo.setUpdateTime(new Date());
+        orderInfo.setCreateTime(LocalDateTime.now());
+        orderInfo.setUpdateTime(LocalDateTime.now());
         orderInfo.setDeleted(false);
         return orderInfo;
     }
@@ -72,8 +72,8 @@ public class OrderAssembler {
                                             .multiply(BigDecimal.valueOf(goodBuyInfo.getCount())));
                             orderDetail.setCreator(request.getUserId());
                             orderDetail.setUpdater(request.getUserId());
-                            orderDetail.setCreateTime(new Date());
-                            orderDetail.setUpdateTime(new Date());
+                            orderDetail.setCreateTime(LocalDateTime.now());
+                            orderDetail.setUpdateTime(LocalDateTime.now());
                             orderDetail.setDeleted(false);
                             return orderDetail;
                         })
