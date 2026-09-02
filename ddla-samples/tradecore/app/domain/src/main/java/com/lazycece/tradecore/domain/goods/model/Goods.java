@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,15 +13,13 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.domain.goods.model;
 
 import com.lazycece.rapidf.domain.anotation.DomainEntity;
 import com.lazycece.rapidf.domain.model.Entity;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 /**
  * @author lazycece

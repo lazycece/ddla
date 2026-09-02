@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.infra.acl.respository;
 
 import com.lazycece.rapidf.domain.anotation.DomainRepository;
@@ -22,7 +21,6 @@ import com.lazycece.rapidf.utils.UUIDUtils;
 import com.lazycece.tradecore.domain.order.model.OrderInfo;
 import com.lazycece.tradecore.domain.order.model.OrderQueryCondition;
 import com.lazycece.tradecore.domain.order.repository.OrderInfoRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,15 +47,19 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
 
     @Override
     public OrderInfo queryByOrderId(String userId, String orderId) {
-        Optional<OrderInfo> optional = orderInfoList.stream()
-                .filter(orderInfo ->
-                        orderInfo.getOrderId().equals(orderId) && orderInfo.getUserId().equals(userId))
-                .findFirst();
+        Optional<OrderInfo> optional =
+                orderInfoList.stream()
+                        .filter(
+                                orderInfo ->
+                                        orderInfo.getOrderId().equals(orderId)
+                                                && orderInfo.getUserId().equals(userId))
+                        .findFirst();
         return optional.orElse(null);
     }
 
     @Override
-    public List<OrderInfo> queryByCondition(OrderQueryCondition queryCondition, Pagination pagination) {
+    public List<OrderInfo> queryByCondition(
+            OrderQueryCondition queryCondition, Pagination pagination) {
         return null;
     }
 }

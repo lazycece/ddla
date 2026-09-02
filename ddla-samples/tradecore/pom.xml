@@ -39,7 +39,7 @@
         <flatten.maven.plugin.version>1.2.7</flatten.maven.plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <spotless-maven-plugin.version>3.10.0</spotless-maven-plugin.version>
-        <google-java-format.version>1.36.0</google-java-format.version>
+        <google-java-format.version>1.15.0</google-java-format.version>
         <!-- Basic core dependencies -->
         <rapidf-dependencies.version>2.0.0</rapidf-dependencies.version>
         <spring-boot-dependencies.version>4.1.0</spring-boot-dependencies.version>
@@ -233,7 +233,7 @@
                         </googleJavaFormat>
                         <formatAnnotations/>
                         <licenseHeader>
-                            <file>${project.basedir}/conf/license/license-header.txt</file>
+                            <file>${maven.multiModuleProjectDirectory}/conf/license/license-header.txt</file>
                         </licenseHeader>
                     </java>
                 </configuration>

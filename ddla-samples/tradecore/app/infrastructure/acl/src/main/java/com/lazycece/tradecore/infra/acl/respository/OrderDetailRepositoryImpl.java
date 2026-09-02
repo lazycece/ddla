@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,13 +13,11 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.infra.acl.respository;
 
 import com.lazycece.rapidf.domain.anotation.DomainRepository;
 import com.lazycece.tradecore.domain.order.model.OrderDetail;
 import com.lazycece.tradecore.domain.order.repository.OrderDetailRepository;
-
 import java.util.List;
 
 /**
@@ -30,9 +28,7 @@ import java.util.List;
 public class OrderDetailRepositoryImpl implements OrderDetailRepository {
 
     @Override
-    public void batchInsert(List<OrderDetail> orderDetailList) {
-
-    }
+    public void batchInsert(List<OrderDetail> orderDetailList) {}
 
     @Override
     public List<OrderDetail> queryByOrderId(String orderId) {

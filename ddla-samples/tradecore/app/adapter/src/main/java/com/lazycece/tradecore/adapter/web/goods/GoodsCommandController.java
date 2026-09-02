@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,12 +13,10 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.adapter.web.goods;
 
 /**
  * @author lazycece
  * @date 2023/2/11
  */
-public class GoodsCommandController {
-}
+public class GoodsCommandController {}

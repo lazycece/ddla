@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.domain.order.model;
 
 import com.lazycece.rapidf.domain.statemachine.StateEvent;
@@ -27,7 +26,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum OrderEventAction implements StateEvent<String> {
-
     ORDER_CREATE("ORDER_CREATE", "订单创建"),
     ORDER_CANCEL("ORDER_CANCEL", "订单取消"),
     ORDER_PAYMENT("ORDER_PAYMENT", "订单支付"),
