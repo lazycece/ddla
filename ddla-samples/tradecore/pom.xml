@@ -211,19 +211,12 @@
                     </formats>
                     <!-- define a language-specific format -->
                     <java>
-                        <!--
-                        配置顺序 importOrder → removeUnusedImports → googleJavaFormat → formatAnnotations → licenseHeader
-                        实际流水线：（如果先跑 GJF 再排 import，GJF 可能把 import 空行弄乱，importOrder 又要重排一遍；licenseHeader 放最后，避免 GJF 把版权头里的注释折行）
-                            1、先排 import 顺序、删未用 import
-                            2、再跑 GJF 排版（此时 import 已经干净了，GJF 不会乱动）
-                            3、修正注解格式
-                            4、最后补版权头
-                        -->
                         <importOrder>
                             <order>java,javax,org,com,com.lazycece,,#</order>
                         </importOrder>
                         <removeUnusedImports/>
                         <forbidWildcardImports/>
+                        <formatAnnotations/>
                         <!-- apply a specific flavor of google-java-format and reflow long strings -->
                         <googleJavaFormat>
                             <version>${google-java-format.version}</version>
@@ -231,7 +224,6 @@
                             <reflowLongStrings>true</reflowLongStrings>
                             <formatJavadoc>false</formatJavadoc>
                         </googleJavaFormat>
-                        <formatAnnotations/>
                         <licenseHeader>
                             <file>${maven.multiModuleProjectDirectory}/conf/license/license-header.txt</file>
                         </licenseHeader>
