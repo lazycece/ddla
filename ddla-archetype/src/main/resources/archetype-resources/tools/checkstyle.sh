@@ -1,0 +1,1 @@
+mvn checkstyle:check      # 只检查，不编译
