@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lazycece.ddla</groupId>
     <artifactId>tradecore</artifactId>
@@ -24,7 +25,7 @@
         <!-- Project Vision -->
         <revision>1.0.0.20230210</revision>
         <!-- Basic config -->
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,15 +35,17 @@
         <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
         <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
         <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-        <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+        <maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
         <flatten.maven.plugin.version>1.2.7</flatten.maven.plugin.version>
+        <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
+        <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <!-- Basic core dependencies -->
-        <rapidf-dependencies.version>1.4.0</rapidf-dependencies.version>
-        <spring-boot-dependencies.version>2.5.6</spring-boot-dependencies.version>
+        <rapidf-dependencies.version>2.0.0</rapidf-dependencies.version>
+        <spring-boot-dependencies.version>4.1.0</spring-boot-dependencies.version>
         <lombok.version>1.18.24</lombok.version>
         <!-- Company inside dependencies -->
         <!-- Open source dependencies -->
-        <mybatis-spring-boot-starter.version>2.1.3</mybatis-spring-boot-starter.version>
+        <mybatis-spring-boot-starter.version>4.1.0</mybatis-spring-boot-starter.version>
         <druid-spring-boot-starter.version>1.2.15</druid-spring-boot-starter.version>
     </properties>
 
@@ -144,6 +147,56 @@
                         <phase>clean</phase>
                         <goals>
                             <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <dependencies>
+                    <!-- 强制用新版本 Checkstyle 核心 -->
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>11.1.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>conf/checkstyle/google_checks_indent4.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>${spotless-maven-plugin.version}</version>
+                <configuration>
+                    <java>
+                        <palantirJavaFormat/>
+                        <importOrder>
+                            <order>com.lazycece,,javax,java,\#</order>
+                        </importOrder>
+                        <removeUnusedImports/>
+                    </java>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>spotless-check</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
