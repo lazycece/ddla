@@ -16,10 +16,10 @@
 
 package com.lazycece.tradecore.facade.order.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
