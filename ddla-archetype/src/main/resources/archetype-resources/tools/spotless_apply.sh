@@ -14,4 +14,4 @@
 #    limitations under the License.
 #
 
-mvn spotless:check
+mvn spotless:apply
