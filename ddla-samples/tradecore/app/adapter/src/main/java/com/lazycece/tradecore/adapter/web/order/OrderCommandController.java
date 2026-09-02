@@ -35,8 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class OrderCommandController implements OrderCommandFacade {
 
-    @Autowired
-    private OrderCommandFacade commandFacade;
+    @Autowired private OrderCommandFacade commandFacade;
 
     @Override
     @PostMapping("/create")
