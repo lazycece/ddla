@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,16 +13,14 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.facade.order.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author lazycece
@@ -39,8 +37,10 @@ public class OrderCreateRequest implements Serializable {
 
     @NotBlank(message = "userId不能为空")
     private String userId;
+
     @NotBlank(message = "addressId不能为空")
     private String addressId;
+
     @NotEmpty(message = "goodBuyInfoList不能为空")
     private List<GoodBuyInfo> goodBuyInfoList;
 

@@ -33,7 +33,9 @@ public class OrderInfoQueryRequest implements Serializable {
      */
     private static final long serialVersionUID = -4383329900461359499L;
 
-    @NotBlank(message = "userId不能为空") private String userId;
+    @NotBlank(message = "userId不能为空")
+    private String userId;
 
-    @NotBlank(message = "orderId不能为空") private String orderId;
+    @NotBlank(message = "orderId不能为空")
+    private String orderId;
 }
