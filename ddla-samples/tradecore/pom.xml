@@ -32,7 +32,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Maven plugin -->
         <maven.compiler.plugin.version>3.6.2</maven.compiler.plugin.version>
-        <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
+        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
         <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
         <maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
@@ -48,7 +48,6 @@
         <!-- Open source dependencies -->
         <mybatis-spring-boot-starter.version>4.1.0</mybatis-spring-boot-starter.version>
         <druid-spring-boot-starter.version>1.2.15</druid-spring-boot-starter.version>
-        <archunit-junit5.version>1.3.0</archunit-junit5.version>
     </properties>
 
     <dependencyManagement>
@@ -91,12 +90,6 @@
                 <version>${druid-spring-boot-starter.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.tngtech.archunit</groupId>
-                <artifactId>archunit-junit5</artifactId>
-                <version>${archunit-junit5.version}</version>
-                <scope>test</scope>
-            </dependency>
             <!-- Open source dependencies end-->
         </dependencies>
     </dependencyManagement>
