@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.application.order.assembler;
 
 import com.lazycece.rapidf.utils.DefaultUtils;
@@ -22,9 +21,8 @@ import com.lazycece.tradecore.domain.order.model.OrderDetail;
 import com.lazycece.tradecore.domain.order.model.OrderInfo;
 import com.lazycece.tradecore.domain.order.model.OrderStatus;
 import com.lazycece.tradecore.facade.order.request.OrderCreateRequest;
-
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,39 +39,44 @@ public class OrderAssembler {
         orderInfo.setOrderDetailList(detailList);
         orderInfo.setUserId(request.getUserId());
         orderInfo.setAddressId(request.getAddressId());
-        BigDecimal amount = DefaultUtils.defaultList(detailList)
-                .stream().map(OrderDetail::getAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal amount =
+                DefaultUtils.defaultList(detailList).stream()
+                        .map(OrderDetail::getAmount)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add);
         orderInfo.setAmount(amount);
         orderInfo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderInfo.setCreator(request.getUserId());
         orderInfo.setUpdater(request.getUserId());
-        orderInfo.setCreateTime(new Date());
-        orderInfo.setUpdateTime(new Date());
+        orderInfo.setCreateTime(LocalDateTime.now());
+        orderInfo.setUpdateTime(LocalDateTime.now());
         orderInfo.setDeleted(false);
         return orderInfo;
     }
 
-    private static List<OrderDetail> assembleOrderDetails(OrderCreateRequest request, List<Goods> goodsList) {
-        Map<String, Goods> goodsMap = DefaultUtils.defaultList(goodsList)
-                .stream().collect(Collectors.toMap(Goods::getGoodsId, o -> o));
-        return DefaultUtils.defaultList(request.getGoodBuyInfoList())
-                .stream().map(goodBuyInfo -> {
-                    Goods goods = goodsMap.get(goodBuyInfo.getGoodsId());
-                    OrderDetail orderDetail = new OrderDetail();
-                    orderDetail.setUserId(request.getUserId());
-                    orderDetail.setGoodsId(goodBuyInfo.getGoodsId());
-                    orderDetail.setGoodCount(goodBuyInfo.getCount());
-                    orderDetail.setGoodsPrice(goods.getPrice());
-                    orderDetail.setAmount(goods.getPrice().multiply(BigDecimal.valueOf(goodBuyInfo.getCount())));
-                    orderDetail.setCreator(request.getUserId());
-                    orderDetail.setUpdater(request.getUserId());
-                    orderDetail.setCreateTime(new Date());
-                    orderDetail.setUpdateTime(new Date());
-                    orderDetail.setDeleted(false);
-                    return orderDetail;
-                }).collect(Collectors.toList());
+    private static List<OrderDetail> assembleOrderDetails(
+            OrderCreateRequest request, List<Goods> goodsList) {
+        Map<String, Goods> goodsMap =
+                DefaultUtils.defaultList(goodsList).stream()
+                        .collect(Collectors.toMap(Goods::getGoodsId, o -> o));
+        return DefaultUtils.defaultList(request.getGoodBuyInfoList()).stream()
+                .map(
+                        goodBuyInfo -> {
+                            Goods goods = goodsMap.get(goodBuyInfo.getGoodsId());
+                            OrderDetail orderDetail = new OrderDetail();
+                            orderDetail.setUserId(request.getUserId());
+                            orderDetail.setGoodsId(goodBuyInfo.getGoodsId());
+                            orderDetail.setGoodCount(goodBuyInfo.getCount());
+                            orderDetail.setGoodsPrice(goods.getPrice());
+                            orderDetail.setAmount(
+                                    goods.getPrice()
+                                            .multiply(BigDecimal.valueOf(goodBuyInfo.getCount())));
+                            orderDetail.setCreator(request.getUserId());
+                            orderDetail.setUpdater(request.getUserId());
+                            orderDetail.setCreateTime(LocalDateTime.now());
+                            orderDetail.setUpdateTime(LocalDateTime.now());
+                            orderDetail.setDeleted(false);
+                            return orderDetail;
+                        })
+                .collect(Collectors.toList());
     }
-
-
 }

@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package ${package}.domain.order.event;
 
 import com.lazycece.rapidf.domain.anotation.DomainFactory;
@@ -24,10 +23,9 @@ import com.lazycece.rapidf.domain.anotation.ValueObject;
 import ${package}.domain.order.model.OrderEventAction;
 import ${package}.domain.order.model.OrderInfo;
 import ${package}.domain.order.model.OrderStatus;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 /**
  * @author lazycece

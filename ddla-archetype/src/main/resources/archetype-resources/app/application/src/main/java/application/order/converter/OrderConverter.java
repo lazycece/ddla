@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package ${package}.application.order.converter;
 
 import com.lazycece.rapidf.utils.DefaultUtils;
@@ -25,7 +24,6 @@ import ${package}.domain.order.model.OrderInfo;
 import ${package}.domain.order.model.OrderStatus;
 import ${package}.facade.order.dto.OrderDetailDTO;
 import ${package}.facade.order.dto.OrderInfoDTO;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,24 +39,27 @@ public class OrderConverter {
         dto.setUserId(model.getUserId());
         dto.setAddressId(model.getAddressId());
         dto.setAmount(model.getAmount());
-        dto.setOrderStatus(DefaultUtils.defaultValueIfNullObj(model.getOrderStatus(),
-                OrderStatus::getCode, null));
+        dto.setOrderStatus(
+                DefaultUtils.defaultValueIfNullObj(
+                        model.getOrderStatus(), OrderStatus::getCode, null));
         dto.setOrderDetailList(toOrderDetailDTOList(model.getOrderDetailList()));
         return dto;
     }
 
     private static List<OrderDetailDTO> toOrderDetailDTOList(List<OrderDetail> modelList) {
-        return DefaultUtils.defaultList(modelList)
-                .stream().map(model -> {
-                    OrderDetailDTO dto = new OrderDetailDTO();
-                    dto.setOrderDetailId(model.getOrderDetailId());
-                    dto.setOrderId(model.getOrderId());
-                    dto.setUserId(model.getUserId());
-                    dto.setGoodsId(model.getGoodsId());
-                    dto.setGoodCount(model.getGoodCount());
-                    dto.setGoodsPrice(model.getGoodsPrice());
-                    dto.setAmount(model.getAmount());
-                    return dto;
-                }).collect(Collectors.toList());
+        return DefaultUtils.defaultList(modelList).stream()
+                .map(
+                        model -> {
+                            OrderDetailDTO dto = new OrderDetailDTO();
+                            dto.setOrderDetailId(model.getOrderDetailId());
+                            dto.setOrderId(model.getOrderId());
+                            dto.setUserId(model.getUserId());
+                            dto.setGoodsId(model.getGoodsId());
+                            dto.setGoodCount(model.getGoodCount());
+                            dto.setGoodsPrice(model.getGoodsPrice());
+                            dto.setAmount(model.getAmount());
+                            return dto;
+                        })
+                .collect(Collectors.toList());
     }
 }

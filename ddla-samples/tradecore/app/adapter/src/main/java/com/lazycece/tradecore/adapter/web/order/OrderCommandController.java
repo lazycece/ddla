@@ -1,5 +1,5 @@
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,13 +13,13 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.lazycece.tradecore.adapter.web.order;
 
 import com.lazycece.rapidf.restful.response.RespData;
 import com.lazycece.tradecore.facade.order.api.OrderCommandFacade;
 import com.lazycece.tradecore.facade.order.request.OrderCancelRequest;
 import com.lazycece.tradecore.facade.order.request.OrderCreateRequest;
+import com.lazycece.tradecore.facade.order.result.OrderCreateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,18 +33,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/order")
-public class OrderCommandController {
+public class OrderCommandController implements OrderCommandFacade {
 
-    @Autowired
-    private OrderCommandFacade commandFacade;
+    @Autowired private OrderCommandFacade commandFacade;
 
+    @Override
     @PostMapping("/create")
-    public RespData<?> createOrder(@RequestBody @Validated OrderCreateRequest request) {
+    public RespData<OrderCreateResult> createOrder(
+            @RequestBody @Validated OrderCreateRequest request) {
         return commandFacade.createOrder(request);
     }
 
+    @Override
     @PostMapping("/cancel")
-    public RespData<?> cancelOrder(@RequestBody @Validated OrderCancelRequest request) {
+    public RespData<Void> cancelOrder(@RequestBody @Validated OrderCancelRequest request) {
         return commandFacade.cancelOrder(request);
     }
 }

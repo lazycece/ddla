@@ -4,9 +4,33 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <fileSets>
     <fileSet filtered="true" encoding="UTF-8">
+      <directory>conf/license</directory>
+      <includes>
+        <include>**/*.txt</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
       <directory>conf/environment</directory>
       <includes>
         <include>**/*.properties</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>conf/codestyle</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>conf/checkstyle</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>docs</directory>
+      <includes>
+        <include>**/*.gitkeep</include>
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8">
@@ -16,10 +40,15 @@
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8">
+      <directory>tools</directory>
+      <includes>
+        <include>**/*.sh</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
       <directory></directory>
       <includes>
         <include>.gitignore</include>
-        <include>deploy.sh</include>
         <include>README.md</include>
       </includes>
     </fileSet>
@@ -39,6 +68,12 @@
             <include>**/*.gitkeep</include>
           </includes>
         </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>tradecore-facade.iml</include>
+          </includes>
+        </fileSet>
       </fileSets>
     </module>
     <module id="${rootArtifactId}-domain" dir="app/domain" name="${rootArtifactId}-domain">
@@ -53,6 +88,12 @@
           <directory>src/main/java</directory>
           <includes>
             <include>**/*.gitkeep</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>tradecore-domain.iml</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -79,6 +120,12 @@
                 <include>**/*.gitkeep</include>
               </includes>
             </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>tradecore-infra-dal.iml</include>
+              </includes>
+            </fileSet>
           </fileSets>
         </module>
         <module id="${rootArtifactId}-infra-integration" dir="integration" name="${rootArtifactId}-infra-integration">
@@ -87,6 +134,12 @@
               <directory>src/main/java</directory>
               <includes>
                 <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>tradecore-infra-integration.iml</include>
               </includes>
             </fileSet>
           </fileSets>
@@ -103,6 +156,12 @@
               <directory>src/main/java</directory>
               <includes>
                 <include>**/*.gitkeep</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory></directory>
+              <includes>
+                <include>tradecore-infra-acl.iml</include>
               </includes>
             </fileSet>
           </fileSets>
@@ -123,6 +182,12 @@
             <include>**/*.gitkeep</include>
           </includes>
         </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>tradecore-application.iml</include>
+          </includes>
+        </fileSet>
       </fileSets>
     </module>
     <module id="${rootArtifactId}-adapter" dir="app/adapter" name="${rootArtifactId}-adapter">
@@ -139,6 +204,12 @@
             <include>**/*.gitkeep</include>
           </includes>
         </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>tradecore-adapter.iml</include>
+          </includes>
+        </fileSet>
       </fileSets>
     </module>
     <module id="${rootArtifactId}-bootstrap" dir="bootstrap" name="${rootArtifactId}-bootstrap">
@@ -153,6 +224,12 @@
           <directory>src/main/resources</directory>
           <includes>
             <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>tradecore-bootstrap.iml</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -177,6 +254,12 @@
             <include>**/*.gitkeep</include>
             <include>**/*.json</include>
             <include>**/*.http</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>tradecore-test.iml</include>
           </includes>
         </fileSet>
       </fileSets>

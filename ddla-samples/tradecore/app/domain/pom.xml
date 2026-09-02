@@ -14,13 +14,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.lazycece.ddla</groupId>
-            <artifactId>tradecore-facade</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.lazycece.rapidf</groupId>
+            <artifactId>rapidf-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lazycece.rapidf</groupId>
-            <artifactId>rapidf-domain</artifactId>
+            <artifactId>rapidf-restful</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lazycece.rapidf</groupId>
@@ -41,6 +40,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 </project>
