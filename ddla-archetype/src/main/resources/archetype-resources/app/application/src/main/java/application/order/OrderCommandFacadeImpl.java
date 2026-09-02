@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package ${package}.application.order;
 
 import com.lazycece.rapidf.domain.anotation.ApplicationService;
@@ -33,30 +32,31 @@ import ${package}.facade.order.api.OrderCommandFacade;
 import ${package}.facade.order.request.OrderCancelRequest;
 import ${package}.facade.order.request.OrderCreateRequest;
 import ${package}.facade.order.result.OrderCreateResult;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 
 /**
  * @author lazycece
  * @date 2023/2/11
  */
+@Primary
 @ApplicationService
 public class OrderCommandFacadeImpl implements OrderCommandFacade {
 
-    @Autowired
-    private OrderService orderService;
-    @Autowired
-    private GoodsRepository goodsRepository;
+    @Autowired private OrderService orderService;
+
+    @Autowired private GoodsRepository goodsRepository;
 
     @Override
     public RespData<OrderCreateResult> createOrder(OrderCreateRequest request) {
         OrderCreateRequestValidator.validate(request);
 
-        List<String> goodsIdList = request.getGoodBuyInfoList()
-                .stream().map(OrderCreateRequest.GoodBuyInfo::getGoodsId)
-                .collect(Collectors.toList());
+        List<String> goodsIdList =
+                request.getGoodBuyInfoList().stream()
+                        .map(OrderCreateRequest.GoodBuyInfo::getGoodsId)
+                        .collect(Collectors.toList());
         List<Goods> goodsList = goodsRepository.queryByGoodsIdList(goodsIdList);
         OrderInfo orderInfo = OrderAssembler.assembleOrderInfo(request, goodsList);
         String orderId = orderService.createOrder(orderInfo);

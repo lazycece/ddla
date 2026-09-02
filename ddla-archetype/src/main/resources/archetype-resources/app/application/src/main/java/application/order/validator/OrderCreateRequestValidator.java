@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package ${package}.application.order.validator;
 
 import com.lazycece.rapidf.restful.Assert;
@@ -35,11 +34,14 @@ public class OrderCreateRequestValidator {
         Assert.notBlank(request.getUserId(), RespStatus.PARAM_ERROR, "userId不能为空");
         Assert.notEmpty(request.getGoodBuyInfoList(), RespStatus.PARAM_ERROR, "购买商品列表不能为空");
         DefaultUtils.defaultList(request.getGoodBuyInfoList())
-                .forEach(goodBuyInfo -> {
-                    Assert.notBlank(goodBuyInfo.getGoodsId(), RespStatus.PARAM_ERROR, "goodId不能为空");
-                    // 继续校验商品的存在性
+                .forEach(
+                        goodBuyInfo -> {
+                            Assert.notBlank(
+                                    goodBuyInfo.getGoodsId(), RespStatus.PARAM_ERROR, "goodId不能为空");
+                            // 继续校验商品的存在性
 
-                    Assert.notNull(goodBuyInfo.getCount(), RespStatus.PARAM_ERROR, "count不能为null");
-                });
+                            Assert.notNull(
+                                    goodBuyInfo.getCount(), RespStatus.PARAM_ERROR, "count不能为null");
+                        });
     }
 }

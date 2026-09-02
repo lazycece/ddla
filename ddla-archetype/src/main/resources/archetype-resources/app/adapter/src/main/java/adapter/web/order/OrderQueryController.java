@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,13 +16,14 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package ${package}.adapter.web.order;
 
+import com.lazycece.rapidf.restful.dto.PageData;
 import com.lazycece.rapidf.restful.response.RespData;
 import ${package}.facade.order.api.OrderQueryFacade;
-import ${package}.facade.order.request.OrderListQueryRequest;
+import ${package}.facade.order.dto.OrderInfoDTO;
 import ${package}.facade.order.request.OrderInfoQueryRequest;
+import ${package}.facade.order.request.OrderListQueryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,18 +36,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/order")
-public class OrderQueryController {
+public class OrderQueryController implements OrderQueryFacade {
 
-    @Autowired
-    private OrderQueryFacade queryFacade;
+    @Autowired private OrderQueryFacade queryFacade;
 
+    @Override
     @GetMapping("/query")
-    public RespData<?> queryOrder(@Validated OrderInfoQueryRequest request) {
+    public RespData<OrderInfoDTO> queryOrder(@Validated OrderInfoQueryRequest request) {
         return queryFacade.queryOrder(request);
     }
 
+    @Override
     @GetMapping("/queryList")
-    public RespData<?> queryList(@Validated OrderListQueryRequest request) {
+    public RespData<PageData<OrderInfoDTO>> queryOrderList(
+            @Validated OrderListQueryRequest request) {
         return queryFacade.queryOrderList(request);
     }
 }

@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 /*
- *    Copyright 2023 lazycece<lazycece@gmail.com>
+ *    Copyright (C) 2023 lazycece<lazycece@gmail.com>. All rights reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package ${package}.domain.order.service.impl;
 
 import com.lazycece.rapidf.domain.anotation.DomainService;
@@ -26,19 +25,18 @@ import com.lazycece.rapidf.domain.event.DomainEventPublisher;
 import com.lazycece.rapidf.restful.Assert;
 import com.lazycece.rapidf.restful.response.RespStatus;
 import com.lazycece.rapidf.utils.DefaultUtils;
-import ${package}.domain.order.model.OrderEventAction;
-import ${package}.domain.order.model.OrderDetail;
 import ${package}.domain.order.event.OrderEventModel;
+import ${package}.domain.order.model.OrderDetail;
+import ${package}.domain.order.model.OrderEventAction;
 import ${package}.domain.order.model.OrderInfo;
 import ${package}.domain.order.repository.OrderDetailRepository;
 import ${package}.domain.order.repository.OrderInfoRepository;
 import ${package}.domain.order.service.OrderService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
-
-import java.util.List;
 
 /**
  * @author lazycece
@@ -47,14 +45,13 @@ import java.util.List;
 @DomainService
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    private OrderInfoRepository orderInfoRepository;
-    @Autowired
-    private OrderDetailRepository orderDetailRepository;
-    @Autowired
-    private TransactionTemplate transactionTemplate;
-    @Autowired
-    private DomainEventPublisher eventPublisher;
+    @Autowired private OrderInfoRepository orderInfoRepository;
+
+    @Autowired private OrderDetailRepository orderDetailRepository;
+
+    @Autowired private TransactionTemplate transactionTemplate;
+
+    @Autowired private DomainEventPublisher eventPublisher;
 
     @Override
     public String createOrder(OrderInfo orderInfo) {
@@ -62,27 +59,29 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDetail> orderDetailList = orderInfo.getOrderDetailList();
         Assert.notEmpty(orderDetailList, RespStatus.PARAM_ERROR, "订单明细不能为空");
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                String orderId = orderInfoRepository.insert(orderInfo);
-                DefaultUtils.defaultList(orderDetailList)
-                        .forEach(orderDetail -> orderDetail.setOrderId(orderId));
-                orderDetailRepository.batchInsert(orderDetailList);
+        transactionTemplate.execute(
+                new TransactionCallbackWithoutResult() {
+                    @Override
+                    protected void doInTransactionWithoutResult(TransactionStatus status) {
+                        String orderId = orderInfoRepository.insert(orderInfo);
+                        DefaultUtils.defaultList(orderDetailList)
+                                .forEach(orderDetail -> orderDetail.setOrderId(orderId));
+                        orderDetailRepository.batchInsert(orderDetailList);
 
-                DomainEvent domainEvent = DomainEventBuilder.builder()
-                        .type(OrderEventModel.class.getName())
-                        .identity(orderId)
-                        .data(OrderEventModel.build(OrderEventAction.ORDER_CREATE, orderInfo))
-                        .build();
-                eventPublisher.publish(domainEvent);
-            }
-        });
+                        DomainEvent domainEvent =
+                                DomainEventBuilder.builder()
+                                        .type(OrderEventModel.class.getName())
+                                        .identity(orderId)
+                                        .data(
+                                                OrderEventModel.build(
+                                                        OrderEventAction.ORDER_CREATE, orderInfo))
+                                        .build();
+                        eventPublisher.publish(domainEvent);
+                    }
+                });
         return orderInfo.getOrderId();
     }
 
     @Override
-    public void cancelOrder(String userId, String orderId) {
-
-    }
+    public void cancelOrder(String userId, String orderId) {}
 }

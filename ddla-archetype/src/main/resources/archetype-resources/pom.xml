@@ -12,25 +12,28 @@
         <!-- Project Vision -->
         <revision>1.0.0.20230210</revision>
         <!-- Basic config -->
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}}</maven.compiler.target>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Maven plugin -->
         <maven.compiler.plugin.version>3.6.2</maven.compiler.plugin.version>
-        <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
+        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
         <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-        <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+        <maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
         <flatten.maven.plugin.version>1.2.7</flatten.maven.plugin.version>
+        <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
+        <spotless-maven-plugin.version>3.10.0</spotless-maven-plugin.version>
+        <google-java-format.version>1.15.0</google-java-format.version>
         <!-- Basic core dependencies -->
-        <rapidf-dependencies.version>1.4.0</rapidf-dependencies.version>
-        <spring-boot-dependencies.version>2.5.6</spring-boot-dependencies.version>
+        <rapidf-dependencies.version>3.0.2</rapidf-dependencies.version>
+        <spring-boot-dependencies.version>4.1.0</spring-boot-dependencies.version>
         <lombok.version>1.18.24</lombok.version>
         <!-- Company inside dependencies -->
         <!-- Open source dependencies -->
-        <mybatis-spring-boot-starter.version>2.1.3</mybatis-spring-boot-starter.version>
+        <mybatis-spring-boot-starter.version>4.1.0</mybatis-spring-boot-starter.version>
         <druid-spring-boot-starter.version>1.2.15</druid-spring-boot-starter.version>
     </properties>
 
@@ -73,6 +76,7 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid-spring-boot-starter.version}</version>
             </dependency>
+
             <!-- Open source dependencies end-->
         </dependencies>
     </dependencyManagement>
@@ -133,6 +137,84 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <dependencies>
+                    <!-- 强制用新版本 Checkstyle 核心 -->
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>11.1.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>conf/checkstyle/google_checks_indent4.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>${spotless-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>spotless-check</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <formats>
+                        <!-- you can define as many formats as you want, each is independent -->
+                        <format>
+                            <!-- define the files to apply to -->
+                            <includes>
+                                <include>.gitignore</include>
+                            </includes>
+                            <!-- define the steps to apply to those files -->
+                            <trimTrailingWhitespace />
+                            <endWithNewline />
+                            <indent>
+                                <tabs>true</tabs>
+                                <spacesPerTab>4</spacesPerTab>
+                            </indent>
+                        </format>
+                    </formats>
+                    <!-- define a language-specific format -->
+                    <java>
+                        <importOrder>
+                            <order>java,javax,org,com,com.lazycece,,#</order>
+                        </importOrder>
+                        <removeUnusedImports />
+                        <forbidWildcardImports />
+                        <formatAnnotations />
+                        <!-- apply a specific flavor of google-java-format and reflow long strings -->
+                        <googleJavaFormat>
+                            <version>${google-java-format.version}</version>
+                            <style>AOSP</style> <!--100列，4缩进-->
+                            <reflowLongStrings>true</reflowLongStrings>
+                            <formatJavadoc>false</formatJavadoc>
+                        </googleJavaFormat>
+<!--                        <licenseHeader>-->
+<!--                            <file>${maven.multiModuleProjectDirectory}/conf/license/license-header.txt</file>-->
+<!--                        </licenseHeader>-->
+                    </java>
+                </configuration>
             </plugin>
         </plugins>
     </build>
