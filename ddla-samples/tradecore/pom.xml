@@ -38,7 +38,8 @@
         <maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
         <flatten.maven.plugin.version>1.2.7</flatten.maven.plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
-        <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
+        <spotless-maven-plugin.version>3.10.0</spotless-maven-plugin.version>
+        <google-java-format.version>1.36.0</google-java-format.version>
         <!-- Basic core dependencies -->
         <rapidf-dependencies.version>2.0.0</rapidf-dependencies.version>
         <spring-boot-dependencies.version>4.1.0</spring-boot-dependencies.version>
@@ -182,24 +183,60 @@
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
                 <version>${spotless-maven-plugin.version}</version>
-                <configuration>
-                    <java>
-                        <palantirJavaFormat/>
-                        <importOrder>
-                            <order>com.lazycece,,javax,java,\#</order>
-                        </importOrder>
-                        <removeUnusedImports/>
-                    </java>
-                </configuration>
                 <executions>
                     <execution>
                         <id>spotless-check</id>
-                        <phase>validate</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <formats>
+                        <!-- you can define as many formats as you want, each is independent -->
+                        <format>
+                            <!-- define the files to apply to -->
+                            <includes>
+                                <include>.gitignore</include>
+                            </includes>
+                            <!-- define the steps to apply to those files -->
+                            <trimTrailingWhitespace/>
+                            <endWithNewline/>
+                            <indent>
+                                <tabs>true</tabs>
+                                <spacesPerTab>4</spacesPerTab>
+                            </indent>
+                        </format>
+                    </formats>
+                    <!-- define a language-specific format -->
+                    <java>
+                        <!--
+                        配置顺序 importOrder → removeUnusedImports → googleJavaFormat → formatAnnotations → licenseHeader
+                        实际流水线：（如果先跑 GJF 再排 import，GJF 可能把 import 空行弄乱，importOrder 又要重排一遍；licenseHeader 放最后，避免 GJF 把版权头里的注释折行）
+                            1、先排 import 顺序、删未用 import
+                            2、再跑 GJF 排版（此时 import 已经干净了，GJF 不会乱动）
+                            3、修正注解格式
+                            4、最后补版权头
+                        -->
+                        <importOrder>
+                            <order>java,javax,org,com,com.lazycece,,#</order>
+                        </importOrder>
+                        <removeUnusedImports/>
+                        <forbidWildcardImports/>
+                        <!-- apply a specific flavor of google-java-format and reflow long strings -->
+                        <googleJavaFormat>
+                            <version>${google-java-format.version}</version>
+                            <style>AOSP</style> <!--100列，4缩进-->
+                            <reflowLongStrings>true</reflowLongStrings>
+                            <formatJavadoc>false</formatJavadoc>
+                        </googleJavaFormat>
+                        <formatAnnotations/>
+                        <licenseHeader>
+                            <file>${project.basedir}/conf/license/license-header.txt</file>
+                        </licenseHeader>
+                    </java>
+                </configuration>
             </plugin>
         </plugins>
     </build>
