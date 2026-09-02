@@ -14,11 +14,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.lazycece.ddla</groupId>
-            <artifactId>tradecore-facade</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.lazycece.rapidf</groupId>
             <artifactId>rapidf-domain</artifactId>
         </dependency>

@@ -38,11 +38,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.context.annotation.Primary;
 
 /**
  * @author lazycece
  * @date 2023/2/11
  */
+@Primary
 @ApplicationService
 public class OrderQueryFacadeImpl implements OrderQueryFacade {
 
@@ -55,7 +57,8 @@ public class OrderQueryFacadeImpl implements OrderQueryFacade {
         Assert.notBlank(request.getUserId(), RespStatus.PARAM_ERROR, "userId不能为空");
         Assert.notBlank(request.getOrderId(), RespStatus.PARAM_ERROR, "orderId不能为空");
 
-        OrderInfo orderInfo = orderInfoRepository.queryByOrderId(request.getUserId(), request.getOrderId());
+        OrderInfo orderInfo = orderInfoRepository.queryByOrderId(request.getUserId(),
+                request.getOrderId());
         Assert.notNull(orderInfo, RespStatus.DATA_NOT_EXIST, "订单信息不存在");
 
         return RespData.success(OrderConverter.toOrderInfoDTO(orderInfo));
@@ -70,14 +73,16 @@ public class OrderQueryFacadeImpl implements OrderQueryFacade {
         queryCondition.setUserId(request.getUserId());
 
         if (StringUtils.isNotBlank(request.getOrderStatus())) {
-            OrderStatus orderStatus = EnumUtils.getEnum(OrderStatus.class, request.getOrderStatus());
+            OrderStatus orderStatus = EnumUtils.getEnum(OrderStatus.class,
+                    request.getOrderStatus());
             Assert.notNull(orderStatus, RespStatus.PARAM_ERROR,
                     "订单状态值错误, orderStatus=%s", request.getOrderStatus());
             queryCondition.setOrderStatus(orderStatus);
         }
 
         Pagination pagination = new Pagination(request.getPage(), request.getSize());
-        List<OrderInfo> orderInfoList = orderInfoRepository.queryByCondition(queryCondition, pagination);
+        List<OrderInfo> orderInfoList = orderInfoRepository.queryByCondition(queryCondition,
+                pagination);
         List<OrderInfoDTO> list = DefaultUtils.defaultList(orderInfoList)
                 .stream().map(OrderConverter::toOrderInfoDTO)
                 .collect(Collectors.toList());

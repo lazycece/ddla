@@ -34,11 +34,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.context.annotation.Primary;
 
 /**
  * @author lazycece
  * @date 2023/2/11
  */
+@Primary
 @ApplicationService
 public class OrderCommandFacadeImpl implements OrderCommandFacade {
 

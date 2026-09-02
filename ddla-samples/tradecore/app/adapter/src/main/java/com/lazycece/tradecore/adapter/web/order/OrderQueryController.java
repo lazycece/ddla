@@ -16,8 +16,10 @@
 
 package com.lazycece.tradecore.adapter.web.order;
 
+import com.lazycece.rapidf.restful.dto.PageData;
 import com.lazycece.rapidf.restful.response.RespData;
 import com.lazycece.tradecore.facade.order.api.OrderQueryFacade;
+import com.lazycece.tradecore.facade.order.dto.OrderInfoDTO;
 import com.lazycece.tradecore.facade.order.request.OrderListQueryRequest;
 import com.lazycece.tradecore.facade.order.request.OrderInfoQueryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +34,21 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/order")
-public class OrderQueryController {
+public class OrderQueryController implements OrderQueryFacade {
 
     @Autowired
     private OrderQueryFacade queryFacade;
 
+    @Override
     @GetMapping("/query")
-    public RespData<?> queryOrder(@Validated OrderInfoQueryRequest request) {
+    public RespData<OrderInfoDTO> queryOrder(@Validated OrderInfoQueryRequest request) {
         return queryFacade.queryOrder(request);
     }
 
+    @Override
     @GetMapping("/queryList")
-    public RespData<?> queryList(@Validated OrderListQueryRequest request) {
+    public RespData<PageData<OrderInfoDTO>> queryOrderList(
+            @Validated OrderListQueryRequest request) {
         return queryFacade.queryOrderList(request);
     }
 }

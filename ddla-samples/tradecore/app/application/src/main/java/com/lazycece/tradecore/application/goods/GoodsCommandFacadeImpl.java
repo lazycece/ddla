@@ -18,11 +18,13 @@ package com.lazycece.tradecore.application.goods;
 
 import com.lazycece.rapidf.domain.anotation.ApplicationService;
 import com.lazycece.tradecore.facade.goods.api.GoodsCommandFacade;
+import org.springframework.context.annotation.Primary;
 
 /**
  * @author lazycece
  * @date 2023/2/11
  */
+@Primary
 @ApplicationService
 public class GoodsCommandFacadeImpl implements GoodsCommandFacade {
 

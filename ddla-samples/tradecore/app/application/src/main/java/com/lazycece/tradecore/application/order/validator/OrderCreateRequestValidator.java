@@ -30,13 +30,16 @@ public class OrderCreateRequestValidator {
     public static void validate(OrderCreateRequest request) {
         Assert.notNull(request, RespStatus.PARAM_ERROR, "创建订单请求不能为null");
         Assert.notBlank(request.getUserId(), RespStatus.PARAM_ERROR, "userId不能为空");
-        Assert.notEmpty(request.getGoodBuyInfoList(), RespStatus.PARAM_ERROR, "购买商品列表不能为空");
+        Assert.notEmpty(request.getGoodBuyInfoList(), RespStatus.PARAM_ERROR,
+                "购买商品列表不能为空");
         DefaultUtils.defaultList(request.getGoodBuyInfoList())
                 .forEach(goodBuyInfo -> {
-                    Assert.notBlank(goodBuyInfo.getGoodsId(), RespStatus.PARAM_ERROR, "goodId不能为空");
+                    Assert.notBlank(goodBuyInfo.getGoodsId(), RespStatus.PARAM_ERROR,
+                            "goodId不能为空");
                     // 继续校验商品的存在性
 
-                    Assert.notNull(goodBuyInfo.getCount(), RespStatus.PARAM_ERROR, "count不能为null");
+                    Assert.notNull(goodBuyInfo.getCount(), RespStatus.PARAM_ERROR,
+                            "count不能为null");
                 });
     }
 }
